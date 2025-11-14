@@ -3,524 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portal Spreadsheet Praktis</title>
+  <title>Spreadsheet QC — Praktis</title>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    :root {
-      --primary: #f97316;
-      --primary-soft: rgba(249, 115, 22, 0.15);
-      --accent: #38bdf8;
-      --bg: #020617;
-      --card: rgba(15, 23, 42, 0.96);
-      --border: rgba(148, 163, 184, 0.4);
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --radius-xl: 20px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
     body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, #1d4ed8 0, #020617 45%, #0b1120 100%);
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* floating blobs */
-    .blob {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(60px);
-      opacity: 0.7;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      animation: float 18s ease-in-out infinite alternate;
-      z-index: 0;
-    }
-    .blob-1 { width: 320px; height: 320px; background:#fb923c; top:-80px; left:-80px; }
-    .blob-2 { width: 340px; height: 340px; background:#22d3ee; bottom:-80px; right:-40px; animation-delay:4s; }
-
-    @keyframes float {
-      0%   { transform: translate3d(0,0,0) scale(1); }
-      100% { transform: translate3d(25px,-35px,0) scale(1.06); }
-    }
-
-    .shell {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 1040px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
-      gap: 28px;
-    }
-
-    @media (max-width: 860px) {
-      .shell {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .intro {
-      background: linear-gradient(140deg, rgba(15,23,42,0.98), rgba(15,23,42,0.88));
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border);
-      padding: 26px 26px 22px;
-      box-shadow: 0 22px 45px rgba(15, 23, 42, 0.85);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .intro::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      background: radial-gradient(circle at top right, rgba(56,189,248,0.2), transparent 55%);
-      opacity:0.9;
-      pointer-events:none;
-    }
-
-    .intro-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .badge {
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:5px 12px;
-      border-radius:999px;
-      background:rgba(15,118,110,0.16);
-      border:1px solid rgba(45,212,191,0.6);
-      font-size:0.72rem;
-      text-transform:uppercase;
-      letter-spacing:0.08em;
-      color:#a5f3fc;
-      margin-bottom:14px;
-    }
-    .badge-dot {
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:#22c55e;
-      box-shadow:0 0 12px rgba(34,197,94,0.9);
+      margin: 0;
+      background: #0f172a;
+      color: #e5e7eb;
+      font-family: "Poppins", sans-serif;
+      padding: 26px;
     }
 
     h1 {
-      font-size: clamp(1.9rem, 2.5vw, 2.3rem);
-      line-height:1.1;
-      margin-bottom:10px;
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 22px;
     }
 
-    .gradient-text {
-      background: linear-gradient(135deg,#f97316,#fb923c,#38bdf8);
-      -webkit-background-clip:text;
-      color:transparent;
-    }
-
-    .subtitle {
-      font-size:0.95rem;
-      color:var(--text-muted);
-      max-width:420px;
-      margin-bottom:18px;
-    }
-
-    .meta-row {
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-bottom:14px;
-    }
-
-    .meta-tag {
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 11px;
-      border-radius:999px;
-      font-size:0.78rem;
-      border:1px solid rgba(148,163,184,0.55);
-      background:rgba(15,23,42,0.95);
-    }
-    .meta-icon {
-      width:18px;
-      height:18px;
-      border-radius:999px;
-      border:2px solid rgba(148,163,184,0.7);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:0.7rem;
-    }
-
-    .hint {
-      font-size:0.8rem;
-      color:var(--text-muted);
-      margin-top:6px;
-    }
-    .hint strong { color:var(--text-main); }
-
-    .chip-row {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:18px;
-    }
-    .chip {
-      padding:5px 10px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.45);
-      font-size:0.72rem;
-      color:var(--text-muted);
-      background:radial-gradient(circle at 0 0, rgba(248,250,252,0.05), transparent 60%);
-    }
-
-    /* RIGHT: cards */
-    .cards {
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(148,163,184,0.35);
-      background: radial-gradient(circle at top left, rgba(56,189,248,0.1), rgba(15,23,42,0.96));
-      padding: 20px 18px 16px;
-      box-shadow: 0 22px 50px rgba(15,23,42,0.9);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cards-header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:8px;
-      margin-bottom:14px;
-    }
-
-    .cards-header h2 {
-      font-size:0.9rem;
-      font-weight:600;
-    }
-    .cards-header span {
-      font-size:0.72rem;
-      color:var(--text-muted);
+    .back {
+      text-decoration: none;
+      font-size: 0.9rem;
+      color: #38bdf8;
+      margin-bottom: 20px;
+      display: inline-block;
     }
 
     .grid {
-      display:grid;
-      grid-template-columns: repeat(2,minmax(0,1fr));
-      gap:12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      max-width: 1000px;
+      margin: auto;
     }
 
-    @media (max-width:640px) {
-      body { padding:20px; }
-      .grid { grid-template-columns: minmax(0,1fr); }
-    }
-
-    .card-item {
-      background: rgba(15,23,42,0.96);
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(148,163,184,0.25);
       border-radius: 16px;
-      border: 1px solid rgba(148,163,184,0.6);
-      padding: 11px 11px 10px;
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      position:relative;
-      overflow:hidden;
+      padding: 14px;
+      backdrop-filter: blur(12px);
     }
 
-    .card-badge {
-      position:absolute;
-      top:8px;
-      right:10px;
-      font-size:0.65rem;
-      padding:2px 7px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.7);
-      color:#e5e7eb;
-      background:rgba(15,23,42,0.9);
+    .title {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      font-weight: 600;
     }
 
-    .card-name {
-      font-size:0.9rem;
-      font-weight:500;
-      display:flex;
-      align-items:center;
-      gap:6px;
+    .desc {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 12px;
     }
 
-    .card-icon {
-      width:18px;
-      height:18px;
-      border-radius:6px;
-      background: conic-gradient(from 160deg,#f97316,#1d4ed8,#38bdf8,#f97316);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:0.78rem;
+    .btn {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #f97316;
+      color: #111;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
     }
-
-    .card-desc {
-      font-size:0.78rem;
-      color:var(--text-muted);
-      min-height:32px;
-    }
-
-    .card-meta {
-      font-size:0.7rem;
-      color:var(--text-muted);
-      display:flex;
-      justify-content:space-between;
-      gap:6px;
-    }
-    .card-meta span strong { color:var(--text-main); }
-
-    .card-actions {
-      margin-top:6px;
-      display:flex;
-      gap:6px;
-    }
-
-    .btn-main {
-      flex:1;
-      border:none;
-      border-radius:999px;
-      padding:8px 10px;
-      font-size:0.78rem;
-      font-weight:600;
-      cursor:pointer;
-      background: radial-gradient(circle at 0 0,#facc15,#f97316);
-      color:#111827;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      text-decoration:none;
-      box-shadow:0 10px 22px rgba(248,113,22,0.6);
-      transition:transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
-    }
-    .btn-main:hover {
-      transform:translateY(-1px);
-      box-shadow:0 15px 30px rgba(248,113,22,0.75);
-      filter:brightness(1.03);
-    }
-    .btn-main:active {
-      transform:translateY(0);
-      box-shadow:0 8px 18px rgba(248,113,22,0.5);
-      filter:brightness(0.98);
-    }
-
-    .btn-secondary {
-      min-width:34px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.7);
-      background:rgba(15,23,42,0.98);
-      color:var(--text-main);
-      font-size:0.72rem;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      text-decoration:none;
-      transition:background 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
-    }
-    .btn-secondary:hover {
-      background:rgba(15,23,42,1);
-      border-color:rgba(56,189,248,0.8);
-      transform:translateY(-1px);
-    }
-
-    .cards-footer {
-      margin-top:10px;
-      font-size:0.7rem;
-      color:var(--text-muted);
-      display:flex;
-      justify-content:space-between;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-    .cards-footer span.highlight { color:var(--text-main); font-weight:500; }
   </style>
 </head>
+
 <body>
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
 
-  <main class="shell">
-    <!-- LEFT -->
-    <section class="intro">
-      <div class="intro-inner">
-        <div class="badge">
-          <span class="badge-dot"></span>
-          Portal Spreadsheet
-          <span style="opacity:.7;">• Praktis</span>
-        </div>
+  <a href="../" class="back">← Kembali ke kategori</a>
+  <h1>Spreadsheet QC</h1>
 
-        <h1>
-          Pilih <span class="gradient-text">Spreadsheet</span><br />
-          yang ingin kamu buka
-        </h1>
+  <div class="grid">
 
-        <p class="subtitle">
-          Satu link untuk semua spreadsheet penting. Tinggal pilih kartu yang sesuai
-          dengan pekerjaanmu hari ini, lalu klik <strong>Buka</strong>.
-        </p>
+    <div class="card">
+      <div class="title">QC Harian</div>
+      <div class="desc">Lolos & reject harian.</div>
+      <a class="btn" href="https://docs.google.com/spreadsheets/d/ID1/edit" target="_blank">Buka</a>
+    </div>
 
-        <div class="meta-row">
-          <div class="meta-tag">
-            <div class="meta-icon">🔐</div>
-            Akses mengikuti izin Google
-          </div>
-          <div class="meta-tag">
-            <div class="meta-icon">⚡</div>
-            Cepat diakses dari HP & PC
-          </div>
-        </div>
+    <div class="card">
+      <div class="title">QC Barang Masuk</div>
+      <div class="desc">Inbound QC vendor.</div>
+      <a class="btn" href="https://docs.google.com/spreadsheets/d/ID2/edit" target="_blank">Buka</a>
+    </div>
 
-        <p class="hint">
-          Tips: simpan URL Vercel ini di <strong>bookmark browser</strong> atau jadikan
-          <strong>shortcut di layar utama HP</strong> supaya tim gampang membuka.
-        </p>
+    <div class="card">
+      <div class="title">QC Barang Keluar</div>
+      <div class="desc">Outbound QC.</div>
+      <a class="btn" href="https://docs.google.com/spreadsheets/d/ID3/edit" target="_blank">Buka</a>
+    </div>
 
-        <div class="chip-row">
-          <div class="chip">Cocok untuk gudang, admin, dan operasional</div>
-          <div class="chip">Desain ringan, tidak bikin lemot</div>
-        </div>
-      </div>
-    </section>
+    <div class="card">
+      <div class="title">Temuan / Catatan QC</div>
+      <div class="desc">Catatan lapangan.</div>
+      <a class="btn" href="https://docs.google.com/spreadsheets/d/ID4/edit" target="_blank">Buka</a>
+    </div>
 
-    <!-- RIGHT -->
-    <section class="cards" aria-label="Daftar Spreadsheet">
-      <header class="cards-header">
-        <div>
-          <h2>Daftar Spreadsheet</h2>
-          <span>Pilih salah satu untuk dibuka</span>
-        </div>
-        <span style="font-size:0.7rem; color:var(--text-muted);">v1.0 · Portal</span>
-      </header>
+  </div>
 
-      <div class="grid">
-        <!-- CARD 1 -->
-        <article class="card-item">
-          <div class="card-badge">Utama</div>
-          <div class="card-name">
-            <div class="card-icon">DS</div>
-            <span>Dashboard Operasional</span>
-          </div>
-          <p class="card-desc">
-            Spreadsheet utama untuk monitoring kinerja harian: inbound, outbound, dan summary.
-          </p>
-          <div class="card-meta">
-            <span>Jenis: <strong>Google Sheets</strong></span>
-            <span>Mode: <strong>Internal</strong></span>
-          </div>
-          <div class="card-actions">
-            <!-- GANTI LINK DI SINI UNTUK DASHBOARD UTAMA -->
-            <a class="btn-main" href="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-UTAMA/edit" target="_blank" rel="noopener noreferrer">
-              📊 Buka
-            </a>
-            <button class="btn-secondary" onclick="navigator.clipboard.writeText(this.dataset.link) ; this.textContent='✔'; setTimeout(()=>this.textContent='🔗',900);" data-link="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-UTAMA/edit" title="Copy link">
-              🔗
-            </button>
-          </div>
-        </article>
-
-        <!-- CARD 2 -->
-        <article class="card-item">
-          <div class="card-badge">QC</div>
-          <div class="card-name">
-            <div class="card-icon">QC</div>
-            <span>Spreadsheet Quality Control</span>
-          </div>
-          <p class="card-desc">
-            Pencatatan hasil QC: barang lolos, reject, dan catatan temuan di area gudang.
-          </p>
-          <div class="card-meta">
-            <span>Jenis: <strong>QC Sheet</strong></span>
-            <span>Tim: <strong>QC / Supervisor</strong></span>
-          </div>
-          <div class="card-actions">
-            <!-- GANTI LINK DI SINI UNTUK SHEET QC -->
-            <a class="btn-main" href="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-QC/edit" target="_blank" rel="noopener noreferrer">
-              📋 Buka
-            </a>
-            <button class="btn-secondary" onclick="navigator.clipboard.writeText(this.dataset.link) ; this.textContent='✔'; setTimeout(()=>this.textContent='🔗',900);" data-link="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-QC/edit" title="Copy link">
-              🔗
-            </button>
-          </div>
-        </article>
-
-        <!-- CARD 3 -->
-        <article class="card-item">
-          <div class="card-badge">Inbound</div>
-          <div class="card-name">
-            <div class="card-icon">IN</div>
-            <span>Log Inbound Vendor</span>
-          </div>
-          <p class="card-desc">
-            Pencatatan kedatangan vendor, jadwal di luar cut off, dan selisih jumlah barang.
-          </p>
-          <div class="card-meta">
-            <span>Jenis: <strong>Inbound</strong></span>
-            <span>Tim: <strong>Inbound</strong></span>
-          </div>
-          <div class="card-actions">
-            <!-- GANTI LINK DI SINI UNTUK SHEET INBOUND -->
-            <a class="btn-main" href="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-INBOUND/edit" target="_blank" rel="noopener noreferrer">
-              📦 Buka
-            </a>
-            <button class="btn-secondary" onclick="navigator.clipboard.writeText(this.dataset.link) ; this.textContent='✔'; setTimeout(()=>this.textContent='🔗',900);" data-link="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-INBOUND/edit" title="Copy link">
-              🔗
-            </button>
-          </div>
-        </article>
-
-        <!-- CARD 4 -->
-        <article class="card-item">
-          <div class="card-badge">Lainnya</div>
-          <div class="card-name">
-            <div class="card-icon">EX</div>
-            <span>Spreadsheet Tambahan</span>
-          </div>
-          <p class="card-desc">
-            Bisa digunakan untuk sheet lain seperti absensi, performa karyawan, atau eksperimen.
-          </p>
-          <div class="card-meta">
-            <span>Jenis: <strong>Kustom</strong></span>
-            <span>Tim: <strong>Umum</strong></span>
-          </div>
-          <div class="card-actions">
-            <!-- GANTI LINK DI SINI UNTUK SHEET TAMBAHAN -->
-            <a class="btn-main" href="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-LAIN/edit" target="_blank" rel="noopener noreferrer">
-              📁 Buka
-            </a>
-            <button class="btn-secondary" onclick="navigator.clipboard.writeText(this.dataset.link) ; this.textContent='✔'; setTimeout(()=>this.textContent='🔗',900);" data-link="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-LAIN/edit" title="Copy link">
-              🔗
-            </button>
-          </div>
-        </article>
-      </div>
-
-      <footer class="cards-footer">
-        <span>Semua link di atas hanyalah gerbang. Hak akses tetap diatur dari Google Sheets.</span>
-        <span><span class="highlight">Portal Spreadsheet Praktis</span></span>
-      </footer>
-    </section>
-  </main>
 </body>
 </html>
