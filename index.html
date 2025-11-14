@@ -3,22 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portal Spreadsheet Praktis</title>
-
-  <!-- Google Font -->
+  <title>Portal Spreadsheet • Praktis</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
   <style>
     :root {
-      --primary: #f97316;
-      --primary-soft: rgba(249, 115, 22, 0.15);
-      --accent: #38bdf8;
       --bg: #020617;
-      --card: rgba(15, 23, 42, 0.96);
-      --border: rgba(148, 163, 184, 0.4);
+      --bg-soft: #0b1120;
+      --primary: #f97316;
+      --accent: #38bdf8;
+      --border: rgba(148,163,184,0.4);
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
-      --radius-xl: 20px;
     }
 
     * {
@@ -30,267 +25,229 @@
 
     body {
       min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, #1d4ed8 0, #020617 45%, #0b1120 100%);
+      background: radial-gradient(circle at top left, #1d4ed8, #020617 45%, #0b1120 100%);
       color: var(--text-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
+      padding: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
-    /* floating blobs */
     .blob {
-      position: absolute;
+      position: fixed;
       border-radius: 999px;
-      filter: blur(60px);
-      opacity: 0.7;
+      filter: blur(70px);
       mix-blend-mode: screen;
+      opacity: 0.6;
       pointer-events: none;
-      animation: float 18s ease-in-out infinite alternate;
       z-index: 0;
+      animation: float 22s ease-in-out infinite alternate;
     }
-    .blob-1 { width: 320px; height: 320px; background:#fb923c; top:-80px; left:-80px; }
-    .blob-2 { width: 340px; height: 340px; background:#22d3ee; bottom:-80px; right:-40px; animation-delay:4s; }
+    .blob-1 { width: 340px; height: 340px; background:#fb923c; top:-80px; left:-80px; }
+    .blob-2 { width: 360px; height: 360px; background:#22d3ee; bottom:-100px; right:-40px; animation-delay:4s; }
+    .blob-3 { width: 260px; height: 260px; background:#4f46e5; bottom:10%; left:12%; animation-delay:8s; }
 
     @keyframes float {
-      0%   { transform: translate3d(0,0,0) scale(1); }
-      100% { transform: translate3d(25px,-35px,0) scale(1.06); }
+      0% { transform: translate3d(0,0,0) scale(1); }
+      100% { transform: translate3d(26px,-30px,0) scale(1.06); }
     }
 
     .shell {
       position: relative;
       z-index: 1;
+      max-width: 1200px;
       width: 100%;
-      max-width: 1040px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
-      gap: 28px;
-    }
-
-    @media (max-width: 860px) {
-      .shell {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .intro {
-      background: linear-gradient(140deg, rgba(15,23,42,0.98), rgba(15,23,42,0.88));
-      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(15,23,42,0.92));
+      border-radius: 26px;
       border: 1px solid var(--border);
-      padding: 26px 26px 22px;
-      box-shadow: 0 22px 45px rgba(15, 23, 42, 0.85);
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(15,23,42,0.95);
+      padding: 18px 18px 18px;
+      max-height: calc(100vh - 40px);
+      display:flex;
+      flex-direction:column;
     }
 
-    .intro::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      background: radial-gradient(circle at top right, rgba(56,189,248,0.2), transparent 55%);
-      opacity:0.9;
-      pointer-events:none;
-    }
-
-    .intro-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .badge {
-      display:inline-flex;
+    .top {
+      display:flex;
+      justify-content:space-between;
       align-items:center;
-      gap:8px;
-      padding:5px 12px;
-      border-radius:999px;
-      background:rgba(15,118,110,0.16);
-      border:1px solid rgba(45,212,191,0.6);
-      font-size:0.72rem;
-      text-transform:uppercase;
-      letter-spacing:0.08em;
-      color:#a5f3fc;
-      margin-bottom:14px;
-    }
-    .badge-dot {
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:#22c55e;
-      box-shadow:0 0 12px rgba(34,197,94,0.9);
-    }
-
-    h1 {
-      font-size: clamp(1.9rem, 2.5vw, 2.3rem);
-      line-height:1.1;
+      gap:10px;
       margin-bottom:10px;
     }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .logo-circle {
+      width:34px;
+      height:34px;
+      border-radius:14px;
+      background: conic-gradient(from 160deg,#f97316,#1d4ed8,#38bdf8,#f97316);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 10px 26px rgba(15,23,42,0.9);
+    }
+    .logo-inner {
+      width:25px;
+      height:25px;
+      border-radius:10px;
+      background:#020617;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:0.7rem;
+      font-weight:700;
+      letter-spacing:0.06em;
+      color:var(--primary);
+    }
+    .brand-text {
+      display:flex;
+      flex-direction:column;
+      gap:1px;
+    }
+    .brand-name {
+      font-size:0.94rem;
+      font-weight:600;
+    }
+    .brand-sub {
+      font-size:0.72rem;
+      color:var(--text-muted);
+    }
+    .top-info {
+      font-size:0.74rem;
+      color:var(--text-muted);
+      text-align:right;
+    }
 
+    .hero {
+      margin-bottom:10px;
+    }
+    .hero-title {
+      font-size:1.6rem;
+      font-weight:600;
+      margin-bottom:4px;
+    }
     .gradient-text {
       background: linear-gradient(135deg,#f97316,#fb923c,#38bdf8);
       -webkit-background-clip:text;
       color:transparent;
     }
-
-    .subtitle {
-      font-size:0.95rem;
+    .hero-sub {
+      font-size:0.86rem;
       color:var(--text-muted);
-      max-width:420px;
-      margin-bottom:18px;
+      max-width:520px;
     }
 
-    .meta-row {
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-bottom:14px;
-    }
-
-    .meta-tag {
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 11px;
-      border-radius:999px;
-      font-size:0.78rem;
-      border:1px solid rgba(148,163,184,0.55);
-      background:rgba(15,23,42,0.95);
-    }
-    .meta-icon {
-      width:18px;
-      height:18px;
-      border-radius:999px;
-      border:2px solid rgba(148,163,184,0.7);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:0.7rem;
-    }
-
-    .hint {
-      font-size:0.8rem;
-      color:var(--text-muted);
-      margin-top:6px;
-    }
-    .hint strong { color:var(--text-main); }
-
-    .chip-row {
+    .pill-row {
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-top:18px;
-    }
-    .chip {
-      padding:5px 10px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.45);
+      margin-top:8px;
+      margin-bottom:8px;
       font-size:0.72rem;
+    }
+
+    .pill {
+      padding:4px 9px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.5);
+      background:rgba(15,23,42,0.96);
       color:var(--text-muted);
-      background:radial-gradient(circle at 0 0, rgba(248,250,252,0.05), transparent 60%);
     }
 
-    /* RIGHT: cards */
-    .cards {
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(148,163,184,0.35);
-      background: radial-gradient(circle at top left, rgba(56,189,248,0.1), rgba(15,23,42,0.96));
-      padding: 20px 18px 16px;
-      box-shadow: 0 22px 50px rgba(15,23,42,0.9);
-      position: relative;
-      overflow: hidden;
+    .content {
+      margin-top:8px;
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,0.4);
+      background:rgba(15,23,42,0.96);
+      padding:10px 10px 8px;
+      flex:1;
+      overflow:auto;
     }
 
-    .cards-header {
+    .content-header {
       display:flex;
       justify-content:space-between;
       align-items:center;
-      gap:8px;
-      margin-bottom:14px;
-    }
-
-    .cards-header h2 {
-      font-size:0.9rem;
-      font-weight:600;
-    }
-    .cards-header span {
-      font-size:0.72rem;
+      gap:10px;
+      font-size:0.78rem;
       color:var(--text-muted);
+      margin-bottom:8px;
     }
 
     .grid {
       display:grid;
-      grid-template-columns: repeat(2,minmax(0,1fr));
-      gap:12px;
-    }
-
-    @media (max-width:640px) {
-      body { padding:20px; }
-      .grid { grid-template-columns: minmax(0,1fr); }
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:10px;
     }
 
     .card-item {
-      background: rgba(15,23,42,0.96);
-      border-radius: 16px;
-      border: 1px solid rgba(148,163,184,0.6);
-      padding: 11px 11px 10px;
+      background:rgba(15,23,42,0.98);
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,0.6);
+      padding:10px 10px 9px;
+      position:relative;
       display:flex;
       flex-direction:column;
       gap:6px;
-      position:relative;
-      overflow:hidden;
+      font-size:0.8rem;
     }
 
-    .card-badge {
+    .badge {
       position:absolute;
       top:8px;
       right:10px;
-      font-size:0.65rem;
+      font-size:0.7rem;
       padding:2px 7px;
       border-radius:999px;
-      border:1px solid rgba(148,163,184,0.7);
-      color:#e5e7eb;
-      background:rgba(15,23,42,0.9);
+      border:1px solid rgba(148,163,184,0.8);
+      background:rgba(15,23,42,0.96);
+      color:var(--text-muted);
     }
 
-    .card-name {
-      font-size:0.9rem;
-      font-weight:500;
+    .name-row {
       display:flex;
       align-items:center;
-      gap:6px;
+      gap:7px;
+      margin-bottom:2px;
     }
 
-    .card-icon {
-      width:18px;
-      height:18px;
-      border-radius:6px;
-      background: conic-gradient(from 160deg,#f97316,#1d4ed8,#38bdf8,#f97316);
+    .icon {
+      width:22px;
+      height:22px;
+      border-radius:9px;
+      background: conic-gradient(from 180deg,#f97316,#1d4ed8,#38bdf8,#f97316);
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:0.78rem;
+      font-size:0.9rem;
     }
 
-    .card-desc {
-      font-size:0.78rem;
-      color:var(--text-muted);
-      min-height:32px;
+    .name {
+      font-size:0.92rem;
+      font-weight:600;
     }
 
-    .card-meta {
-      font-size:0.7rem;
+    .desc {
+      font-size:0.76rem;
       color:var(--text-muted);
+      min-height:28px;
+    }
+
+    .meta {
       display:flex;
       justify-content:space-between;
-      gap:6px;
+      gap:8px;
+      font-size:0.72rem;
+      color:var(--text-muted);
     }
-    .card-meta span strong { color:var(--text-main); }
+    .meta span strong {
+      color:var(--text-main);
+    }
 
-    .card-actions {
+    .actions {
       margin-top:6px;
       display:flex;
       gap:6px;
@@ -300,227 +257,891 @@
       flex:1;
       border:none;
       border-radius:999px;
-      padding:8px 10px;
+      padding:7px 10px;
       font-size:0.78rem;
       font-weight:600;
       cursor:pointer;
       background: radial-gradient(circle at 0 0,#facc15,#f97316);
       color:#111827;
+      text-decoration:none;
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:6px;
-      text-decoration:none;
       box-shadow:0 10px 22px rgba(248,113,22,0.6);
-      transition:transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
     }
+
     .btn-main:hover {
       transform:translateY(-1px);
-      box-shadow:0 15px 30px rgba(248,113,22,0.75);
+      box-shadow:0 14px 28px rgba(248,113,22,0.75);
       filter:brightness(1.03);
     }
     .btn-main:active {
       transform:translateY(0);
-      box-shadow:0 8px 18px rgba(248,113,22,0.5);
-      filter:brightness(0.98);
+      box-shadow:0 9px 18px rgba(248,113,22,0.55);
+      filter:brightness(.98);
     }
 
-    .btn-secondary {
-      min-width:34px;
+    .btn-copy {
+      min-width:38px;
       border-radius:999px;
-      border:1px solid rgba(148,163,184,0.7);
+      border:1px solid rgba(148,163,184,0.8);
       background:rgba(15,23,42,0.98);
       color:var(--text-main);
-      font-size:0.72rem;
+      font-size:0.76rem;
+      cursor:pointer;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      cursor:pointer;
-      text-decoration:none;
-      transition:background 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
+      transition:background .12s ease, transform .12s ease, border-color .12s ease;
     }
-    .btn-secondary:hover {
+    .btn-copy:hover {
       background:rgba(15,23,42,1);
-      border-color:rgba(56,189,248,0.8);
+      border-color:var(--accent);
       transform:translateY(-1px);
     }
 
-    .cards-footer {
-      margin-top:10px;
-      font-size:0.7rem;
+    .footer {
+      margin-top:8px;
+      font-size:0.72rem;
       color:var(--text-muted);
       display:flex;
       justify-content:space-between;
       gap:8px;
       flex-wrap:wrap;
     }
-    .cards-footer span.highlight { color:var(--text-main); font-weight:500; }
+    .footer span.highlight {
+      color:var(--text-main);
+      font-weight:500;
+    }
+
+    @media (max-width:720px) {
+      body {
+        padding:12px;
+      }
+      .shell {
+        padding:12px 10px 12px;
+        border-radius:20px;
+      }
+      .hero-title {
+        font-size:1.4rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
 
-  <main class="shell">
-    <!-- LEFT -->
-    <section class="intro">
-      <div class="intro-inner">
-        <div class="badge">
-          <span class="badge-dot"></span>
-          Portal Spreadsheet
-          <span style="opacity:.7;">• Praktis</span>
+  <div class="shell">
+    <div class="top">
+      <div class="brand">
+        <div class="logo-circle">
+          <div class="logo-inner">PR</div>
         </div>
-
-        <h1>
-          Pilih <span class="gradient-text">Spreadsheet</span><br />
-          yang ingin kamu buka
-        </h1>
-
-        <p class="subtitle">
-          Satu link untuk semua spreadsheet penting. Tinggal pilih kartu yang sesuai
-          dengan pekerjaanmu hari ini, lalu klik <strong>Buka</strong>.
-        </p>
-
-        <div class="meta-row">
-          <div class="meta-tag">
-            <div class="meta-icon">🔐</div>
-            Akses mengikuti izin Google
-          </div>
-          <div class="meta-tag">
-            <div class="meta-icon">⚡</div>
-            Cepat diakses dari HP & PC
-          </div>
+        <div class="brand-text">
+          <div class="brand-name">Portal Spreadsheet Praktis</div>
+          <div class="brand-sub">Satu halaman untuk semua link penting</div>
         </div>
+      </div>
+      <div class="top-info">
+        Total link: <strong>34</strong><br/>
+        Akses tetap mengikuti izin Google / Metabase
+      </div>
+    </div>
 
-        <p class="hint">
-          Tips: simpan URL Vercel ini di <strong>bookmark browser</strong> atau jadikan
-          <strong>shortcut di layar utama HP</strong> supaya tim gampang membuka.
-        </p>
-
-        <div class="chip-row">
-          <div class="chip">Cocok untuk gudang, admin, dan operasional</div>
-          <div class="chip">Desain ringan, tidak bikin lemot</div>
-        </div>
+    <section class="hero">
+      <div class="hero-title">
+        Pilih <span class="gradient-text">spreadsheet / dashboard</span><br/>yang ingin kamu buka.
+      </div>
+      <p class="hero-sub">
+        Semua link di bawah bisa kamu klik langsung. Untuk tim, cukup kirim URL portal ini — lalu mereka tinggal pilih sendiri link yang dibutuhkan.
+      </p>
+      <div class="pill-row">
+        <div class="pill">Bisa diakses dari HP & komputer</div>
+        <div class="pill">Desain ringan & modern</div>
+        <div class="pill">Link bisa dicopy cepat (tombol 🔗)</div>
       </div>
     </section>
 
-    <!-- RIGHT -->
-    <section class="cards" aria-label="Daftar Spreadsheet">
-      <header class="cards-header">
-        <div>
-          <h2>Daftar Spreadsheet</h2>
-          <span>Pilih salah satu untuk dibuka</span>
-        </div>
-        <span style="font-size:0.7rem; color:var(--text-muted);">v1.0 · Portal</span>
+    <section class="content">
+      <header class="content-header">
+        <span>Daftar link (urut sesuai input kamu)</span>
+        <span style="opacity:.8;">Kamu boleh edit judul/deskripsi langsung di file HTML</span>
       </header>
 
       <div class="grid">
-        <!-- CARD 1 -->
-        <article class="card-item">
-          <div class="card-badge">Utama</div>
-          <div class="card-name">
-            <div class="card-icon">DS</div>
-            <span>Dashboard Operasional</span>
-          </div>
-          <p class="card-desc">
-            Spreadsheet utama untuk monitoring kinerja harian: inbound, outbound, dan summary.
-          </p>
-          <div class="card-meta">
-            <span>Jenis: <strong>Google Sheets</strong></span>
-            <span>Mode: <strong>Internal</strong></span>
-          </div>
-          <div class="card-actions">
-            <!-- GANTI LINK DI SINI UNTUK DASHBOARD UTAMA -->
-            <a class="btn-main" href="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-UTAMA/edit" target="_blank" rel="noopener noreferrer">
-              📊 Buka
-            </a>
-            <button class="btn-secondary" onclick="navigator.clipboard.writeText(this.dataset.link) ; this.textContent='✔'; setTimeout(()=>this.textContent='🔗',900);" data-link="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-UTAMA/edit" title="Copy link">
-              🔗
-            </button>
-          </div>
-        </article>
 
-        <!-- CARD 2 -->
-        <article class="card-item">
-          <div class="card-badge">QC</div>
-          <div class="card-name">
-            <div class="card-icon">QC</div>
-            <span>Spreadsheet Quality Control</span>
-          </div>
-          <p class="card-desc">
-            Pencatatan hasil QC: barang lolos, reject, dan catatan temuan di area gudang.
-          </p>
-          <div class="card-meta">
-            <span>Jenis: <strong>QC Sheet</strong></span>
-            <span>Tim: <strong>QC / Supervisor</strong></span>
-          </div>
-          <div class="card-actions">
-            <!-- GANTI LINK DI SINI UNTUK SHEET QC -->
-            <a class="btn-main" href="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-QC/edit" target="_blank" rel="noopener noreferrer">
-              📋 Buka
-            </a>
-            <button class="btn-secondary" onclick="navigator.clipboard.writeText(this.dataset.link) ; this.textContent='✔'; setTimeout(()=>this.textContent='🔗',900);" data-link="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-QC/edit" title="Copy link">
-              🔗
-            </button>
-          </div>
-        </article>
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 01</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>1</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1-16l6FVURWm6Z7HFGosvPVJwXScXJqmxLW4NS8W2Tro/edit" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1-16l6FVURWm6Z7HFGosvPVJwXScXJqmxLW4NS8W2Tro/edit" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
 
-        <!-- CARD 3 -->
-        <article class="card-item">
-          <div class="card-badge">Inbound</div>
-          <div class="card-name">
-            <div class="card-icon">IN</div>
-            <span>Log Inbound Vendor</span>
-          </div>
-          <p class="card-desc">
-            Pencatatan kedatangan vendor, jadwal di luar cut off, dan selisih jumlah barang.
-          </p>
-          <div class="card-meta">
-            <span>Jenis: <strong>Inbound</strong></span>
-            <span>Tim: <strong>Inbound</strong></span>
-          </div>
-          <div class="card-actions">
-            <!-- GANTI LINK DI SINI UNTUK SHEET INBOUND -->
-            <a class="btn-main" href="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-INBOUND/edit" target="_blank" rel="noopener noreferrer">
-              📦 Buka
-            </a>
-            <button class="btn-secondary" onclick="navigator.clipboard.writeText(this.dataset.link) ; this.textContent='✔'; setTimeout(()=>this.textContent='🔗',900);" data-link="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-INBOUND/edit" title="Copy link">
-              🔗
-            </button>
-          </div>
-        </article>
+      <article class="card-item">
+        <div class="badge">Metabase</div>
+        <div class="name-row">
+          <div class="icon">📈</div>
+          <div class="name">Metabase Dashboard 2</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Metabase</strong></span>
+          <span>No: <strong>2</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://metabase.praktis.co/dashboard/492-warehouse-bandung-operational-report" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://metabase.praktis.co/dashboard/492-warehouse-bandung-operational-report" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
 
-        <!-- CARD 4 -->
-        <article class="card-item">
-          <div class="card-badge">Lainnya</div>
-          <div class="card-name">
-            <div class="card-icon">EX</div>
-            <span>Spreadsheet Tambahan</span>
-          </div>
-          <p class="card-desc">
-            Bisa digunakan untuk sheet lain seperti absensi, performa karyawan, atau eksperimen.
-          </p>
-          <div class="card-meta">
-            <span>Jenis: <strong>Kustom</strong></span>
-            <span>Tim: <strong>Umum</strong></span>
-          </div>
-          <div class="card-actions">
-            <!-- GANTI LINK DI SINI UNTUK SHEET TAMBAHAN -->
-            <a class="btn-main" href="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-LAIN/edit" target="_blank" rel="noopener noreferrer">
-              📁 Buka
-            </a>
-            <button class="btn-secondary" onclick="navigator.clipboard.writeText(this.dataset.link) ; this.textContent='✔'; setTimeout(()=>this.textContent='🔗',900);" data-link="https://docs.google.com/spreadsheets/d/ID-SPREADSHEET-LAIN/edit" title="Copy link">
-              🔗
-            </button>
-          </div>
-        </article>
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 03</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>3</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1rBkR0g5gKbZNbeqy4lzwdbjuIPxyms9xxfWyQxfXGzc/edit#gid=1341514396" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1rBkR0g5gKbZNbeqy4lzwdbjuIPxyms9xxfWyQxfXGzc/edit#gid=1341514396" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 04</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>4</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit#gid=1939970495" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit#gid=1939970495" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 05</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>5</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1qk-VmBzATNWFTtZnQCPG1aBhpTo2xaSwvqMSLrDTyAg/edit#gid=0" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1qk-VmBzATNWFTtZnQCPG1aBhpTo2xaSwvqMSLrDTyAg/edit#gid=0" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Metabase</div>
+        <div class="name-row">
+          <div class="icon">📈</div>
+          <div class="name">Metabase Dashboard 6</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Metabase</strong></span>
+          <span>No: <strong>6</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://metabase.praktis.co/public/question/4414948a-a05a-43de-bd87-23acb965956d" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://metabase.praktis.co/public/question/4414948a-a05a-43de-bd87-23acb965956d" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 07</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>7</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Yv7bWs3DeMS2Yk0qvYkH_6BKcOOgP4cQyxvonpO1kvA/edit?gid=1577910271#gid=1577910271" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Yv7bWs3DeMS2Yk0qvYkH_6BKcOOgP4cQyxvonpO1kvA/edit?gid=1577910271#gid=1577910271" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 08</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>8</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Xh-Db9g-hgV2-kqr8EBwu2bwM5BQ8E17JtfxFs8Cvww/edit#gid=0" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Xh-Db9g-hgV2-kqr8EBwu2bwM5BQ8E17JtfxFs8Cvww/edit#gid=0" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 09</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>9</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1hirnpw5V4dLp8Lv_Un9H5il0pGaekBZFBEVMCDHCgB4/edit#gid=1039581923" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1hirnpw5V4dLp8Lv_Un9H5il0pGaekBZFBEVMCDHCgB4/edit#gid=1039581923" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 10</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>10</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1NymcYJu9AScgD_3qbJLUEnNv83LJaPWNuDA3uGqJMwA/edit" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1NymcYJu9AScgD_3qbJLUEnNv83LJaPWNuDA3uGqJMwA/edit" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 11</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>11</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1nO90xeFIcD5eeevyxuJaAUny8MHfiVybd4sqaTxLgJg/edit" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1nO90xeFIcD5eeevyxuJaAUny8MHfiVybd4sqaTxLgJg/edit" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 12</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>12</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1_aWm7HRyTTjTijCQSMtQ-LC2swETr4w3WplHltDGdzk/edit" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1_aWm7HRyTTjTijCQSMtQ-LC2swETr4w3WplHltDGdzk/edit" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 13</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>13</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/17kbxJcTCHYlrk2kEaR95SJHuSmM2KA5c_oQWwv45skA/edit" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/17kbxJcTCHYlrk2kEaR95SJHuSmM2KA5c_oQWwv45skA/edit" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 14</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>14</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1tennaiHtDCaTVsTAAh_4mIBAgPOm9ZZCdT-MjeQHYeY/edit" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1tennaiHtDCaTVsTAAh_4mIBAgPOm9ZZCdT-MjeQHYeY/edit" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 15</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>15</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1_tDskis2iPNyTFRVS_ftuIJMZZLM0xxWY9paubworRA/edit#gid=577738889" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1_tDskis2iPNyTFRVS_ftuIJMZZLM0xxWY9paubworRA/edit#gid=577738889" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 16</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>16</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/12vi9NA8M5QPA954wHiI-27qPnura-m_fgyCTvGNsS4A/edit?gid=275005263#gid=275005263" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/12vi9NA8M5QPA954wHiI-27qPnura-m_fgyCTvGNsS4A/edit?gid=275005263#gid=275005263" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 17</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>17</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1O-61ACBsVptuJptN0U-ERlkbHmZRRCeI6Xlolydev9M/edit#gid=173436334" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1O-61ACBsVptuJptN0U-ERlkbHmZRRCeI6Xlolydev9M/edit#gid=173436334" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 18</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>18</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1zQZ1IRc1J5w1-GpEc7m1HyIMB69PO_ag6ul04gV0ud0/edit" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1zQZ1IRc1J5w1-GpEc7m1HyIMB69PO_ag6ul04gV0ud0/edit" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 19</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>19</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1ynuaf2bH2_SXwWc3JZPzUdlojreTrAGl6bqB88G4THM/edit#gid=593033998" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1ynuaf2bH2_SXwWc3JZPzUdlojreTrAGl6bqB88G4THM/edit#gid=593033998" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 20</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>20</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1gN5IJoVEq2IFxKp-kXb-VSYL6oXTOc0AbxDrshfaqog/edit#gid=1760790889" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1gN5IJoVEq2IFxKp-kXb-VSYL6oXTOc0AbxDrshfaqog/edit#gid=1760790889" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 21</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>21</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1O-uCAazHNcc3C6JLtNJc_26H-FgcHHsManV7ypjIzM/edit?gid=553832455#gid=553832455" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1O-uCAazHNcc3C6JLtNJc_26H-FgcHHsManV7ypjIzM/edit?gid=553832455#gid=553832455" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 22</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>22</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Tl5HebKNznjr-sBQwuHzsBKq92lxgiPFPRFlpEmu6Ys/edit?gid=1449397475#gid=1449397475" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Tl5HebKNznjr-sBQwuHzsBKq92lxgiPFPRFlpEmu6Ys/edit?gid=1449397475#gid=1449397475" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 23</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>23</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1ElB6_mj-0JtQ_557QnHeNQuIGnponrP07QsLCjF7Xy0/edit?gid=639685974#gid=639685974" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1ElB6_mj-0JtQ_557QnHeNQuIGnponrP07QsLCjF7Xy0/edit?gid=639685974#gid=639685974" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 24</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>24</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1DCrgXgA7PgQPmrokzF6sB_KlEg4LEEVIggv_y_KGNmo/edit?gid=1885269228#gid=1885269228" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1DCrgXgA7PgQPmrokzF6sB_KlEg4LEEVIggv_y_KGNmo/edit?gid=1885269228#gid=1885269228" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 25</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>25</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1-jio_xo5_YuHZ1r1evVfDKRHrW0COaZoXc-FDHf1SmM/edit?gid=851507582#gid=851507582" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1-jio_xo5_YuHZ1r1evVfDKRHrW0COaZoXc-FDHf1SmM/edit?gid=851507582#gid=851507582" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 26</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>26</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1d3TiOoKVk4WAn3S0bjid72zSy2VDtGzE/edit?gid=1220113485#gid=1220113485" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1d3TiOoKVk4WAn3S0bjid72zSy2VDtGzE/edit?gid=1220113485#gid=1220113485" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 27</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>27</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Yv7bWs3DeMS2Yk0qvYkH_6BKcOOgP4cQyxvonpO1kvA/edit?gid=1412813058#gid=1412813058" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Yv7bWs3DeMS2Yk0qvYkH_6BKcOOgP4cQyxvonpO1kvA/edit?gid=1412813058#gid=1412813058" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 28</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>28</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1hirnpw5V4dLp8Lv_Un9H5il0pGaekBZFBEVMCDHCgB4/edit?gid=1124224996#gid=1124224996" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1hirnpw5V4dLp8Lv_Un9H5il0pGaekBZFBEVMCDHCgB4/edit?gid=1124224996#gid=1124224996" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 29</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>29</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/10BhyVI1M-TKpJtK0ibhn5xokIU6sAVROcRQ3XrtI_Ok/edit?gid=1995252832#gid=1995252832" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/10BhyVI1M-TKpJtK0ibhn5xokIU6sAVROcRQ3XrtI_Ok/edit?gid=1995252832#gid=1995252832" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 30</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>30</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1nO90xeFIcD5eeevyxuJaAUny8MHfiVybd4sqaTxLgJg/edit?gid=1065148661#gid=1065148661" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1nO90xeFIcD5eeevyxuJaAUny8MHfiVybd4sqaTxLgJg/edit?gid=1065148661#gid=1065148661" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 31</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>31</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit?gid=207622867#gid=207622867" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit?gid=207622867#gid=207622867" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 32</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>32</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1WinuOaqeMDeKDoRGNf5yFiIHPAb9RrUewFbUAY_V1Os/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1WinuOaqeMDeKDoRGNf5yFiIHPAb9RrUewFbUAY_V1Os/edit?gid=0#gid=0" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 33</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>33</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Cp9xRy2wq-Yn_Q_i2QC386KntGMKjwy-dwnEk0UsIeU/edit?gid=1908646891#gid=1908646891" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Cp9xRy2wq-Yn_Q_i2QC386KntGMKjwy-dwnEk0UsIeU/edit?gid=1908646891#gid=1908646891" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
+
+      <article class="card-item">
+        <div class="badge">Google Sheets</div>
+        <div class="name-row">
+          <div class="icon">📊</div>
+          <div class="name">Spreadsheet 34</div>
+        </div>
+        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <div class="meta">
+          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>No: <strong>34</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Q_mPr9wEy6iDu3ljc0xX31RKv3ot8uULdjzSGLbnWt0/edit?gid=970355464#gid=970355464" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Q_mPr9wEy6iDu3ljc0xX31RKv3ot8uULdjzSGLbnWt0/edit?gid=970355464#gid=970355464" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+    
       </div>
-
-      <footer class="cards-footer">
-        <span>Semua link di atas hanyalah gerbang. Hak akses tetap diatur dari Google Sheets.</span>
-        <span><span class="highlight">Portal Spreadsheet Praktis</span></span>
-      </footer>
     </section>
-  </main>
+
+    <footer class="footer">
+      <span>Catatan: perubahan data tetap dilakukan di Google Sheets / Metabase, bukan di portal ini.</span>
+      <span class="highlight">Portal Spreadsheet • Praktis</span>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll(".btn-copy").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        const link = btn.getAttribute("data-link");
+        if (!link) return;
+        navigator.clipboard.writeText(link).then(() => {
+          const original = btn.textContent;
+          btn.textContent = "✔";
+          setTimeout(() => { btn.textContent = "🔗"; }, 900);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
