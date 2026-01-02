@@ -970,6 +970,12 @@
     font-size:0.78rem;
   }
   .empty-note.show{ display:block; }
+      .search-wrap{ min-width:0; }
+.search-input{ min-width:0; }
+.chip-row{ justify-content:flex-end; }
+@media (max-width:720px){
+  .chip-row{ justify-content:flex-start; }
+}
 
   @media (max-width:720px){
     .content-header{ display:flex; flex-direction:column; align-items:stretch; gap:10px; }
