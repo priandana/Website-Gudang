@@ -388,17 +388,37 @@
 
     <section class="content">
       <header class="content-header">
-  <span id="resultInfo">Daftar link (34)</span>
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+    <span id="resultInfo">Daftar link (0)</span>
 
-  <div class="search-wrap">
-    <input id="searchInput" class="search-input" type="search"
-      placeholder="Cari: nama link, tipe, badge (contoh: metabase / spreadsheet)…" autocomplete="off" />
-    <button id="clearSearch" class="btn-clear" type="button">Reset</button>
+    <div class="search-wrap">
+      <input id="searchInput" class="search-input" type="search"
+        placeholder="Cari: nama, tipe, badge… (contoh: metabase / inbound / qc)" autocomplete="off" />
+      <button id="clearSearch" class="btn-clear" type="button">Reset</button>
+    </div>
+  </div>
+
+  <div class="chip-row" id="chipRow">
+    <button class="chip active" type="button" data-filter="All">Semua</button>
+    <button class="chip" type="button" data-filter="Umum">Umum</button>
+    <button class="chip" type="button" data-filter="Finishgood">Finishgood</button>
+    <button class="chip" type="button" data-filter="Material">Material</button>
   </div>
 </header>
 
 
-      <!-- KATEGORI: FINISHGOOD -->
+
+      <!-- KATEGORI: UMUM -->
+<section class="category-block" id="catUmum">
+  <div class="category-head">
+    <div class="category-title"><span class="cat-dot"></span> Umum</div>
+    <div class="category-count" id="countUmum">0 link</div>
+  </div>
+  <div class="grid" id="gridUmum"></div>
+  <div class="empty-note" id="emptyUmum">Tidak ada link yang cocok di kategori Umum.</div>
+</section>
+
+<!-- KATEGORI: FINISHGOOD -->
 <section class="category-block" id="catFinishgood">
   <div class="category-head">
     <div class="category-title"><span class="cat-dot"></span> Finishgood</div>
@@ -418,46 +438,66 @@
   <div class="empty-note" id="emptyMaterial">Tidak ada link yang cocok di kategori Material.</div>
 </section>
 
-<!-- Tempat “penampung” card lama (akan dipindah JS) -->
+<!-- Penampung card lama (akan dipindah oleh JS) -->
 <div id="allCards" style="display:none;">
-  <article class="card-item" data-category="Finishgood">
-        <div class="badge">Google Sheets</div>
+  <article class="card-item" data-category="Umum">
+        <div class="badge">5R</div>
         <div class="name-row">
           <div class="icon">📊</div>
           <div class="name">Spreadsheet 01</div>
         </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <p class="desc">5R adalah metode penataan tempat kerja dari Jepang (berasal dari 5S: Seiri, Seiton, Seiso, Seiketsu, Shitsuke) yang diterjemahkan menjadi Ringkas, Rapi, Resik, Rawat, dan Rajin, bertujuan meningkatkan efisiensi, produktivitas, dan keselamatan kerja dengan menciptakan lingkungan kerja yang nyaman dan terorganisir</p>
         <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
+          <span>Tipe: <strong>5R</strong></span>
           <span>No: <strong>1</strong></span>
         </div>
         <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1-16l6FVURWm6Z7HFGosvPVJwXScXJqmxLW4NS8W2Tro/edit" target="_blank" rel="noopener noreferrer">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1XdpWzeDne-g8TZZLqNzlXk2Wbq6hNgUACI6U7BcTqzg/edit?gid=607962061#gid=607962061" target="_blank" rel="noopener noreferrer">
             Buka
           </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1-16l6FVURWm6Z7HFGosvPVJwXScXJqmxLW4NS8W2Tro/edit" title="Copy link">
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1XdpWzeDne-g8TZZLqNzlXk2Wbq6hNgUACI6U7BcTqzg/edit?gid=607962061#gid=607962061" title="Copy link">
             🔗
           </button>
         </div>
       </article>
-    
 
-      <article class="card-item" data-category="Material">
-        <div class="badge">Metabase</div>
+      <article class="card-item" data-category="Finishgood">
+        <div class="badge">Output QC</div>
         <div class="name-row">
           <div class="icon">📈</div>
-          <div class="name">Metabase Dashboard 2</div>
+          <div class="name">Data Output QC</div>
         </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
+        <p class="desc">Google Spreadseet ini untuk mengetahui seberapa banyak data output yang dilakukan oleh team qc</p>
+        <div class="meta">
+          <span>Tipe: <strong>Output QC</strong></span>
+          <span>No: <strong>2</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1fgt5pTaPN86wHWd2vMmk5LUw3RWTq3n8fqPSWkkcGaM/edit?hl=id&gid=1631834911#gid=1631834911" target="_blank" rel="noopener noreferrer">
+            Buka
+          </a>
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1fgt5pTaPN86wHWd2vMmk5LUw3RWTq3n8fqPSWkkcGaM/edit?hl=id&gid=1631834911#gid=1631834911" title="Copy link">
+            🔗
+          </button>
+        </div>
+      </article>
+
+  <article class="card-item" data-category="Material">
+        <div class="badge">Outbound & Inbound</div>
+        <div class="name-row">
+          <div class="icon">📈</div>
+          <div class="name">V2</div>
+        </div>
+        <p class="desc">Data outbound dan inbound material</p>
         <div class="meta">
           <span>Tipe: <strong>Metabase</strong></span>
           <span>No: <strong>2</strong></span>
         </div>
         <div class="actions">
-          <a class="btn-main" href="https://metabase.praktis.co/dashboard/492-warehouse-bandung-operational-report" target="_blank" rel="noopener noreferrer">
+          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit?gid=207622867#gid=207622867" target="_blank" rel="noopener noreferrer">
             Buka
           </a>
-          <button class="btn-copy" data-link="https://metabase.praktis.co/dashboard/492-warehouse-bandung-operational-report" title="Copy link">
+          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit?gid=207622867#gid=207622867" title="Copy link">
             🔗
           </button>
         </div>
@@ -758,6 +798,136 @@
   }
   .empty-note.show{ display:block; }
 </style>
+    <style>
+  /* === STICKY HEADER DI DALAM .content === */
+  .content { position: relative; }
+  .content-header{
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    padding: 10px 10px;
+    margin: -10px -10px 10px; /* biar nempel full ke border content */
+    border-bottom: 1px solid rgba(148,163,184,0.25);
+    background: rgba(15,23,42,0.92);
+    backdrop-filter: blur(10px);
+  }
+
+  /* === SEARCH BAR === */
+  .search-wrap{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    width:min(560px, 100%);
+    margin-left:auto;
+  }
+  .search-input{
+    flex:1;
+    height:36px;
+    padding:0 12px;
+    border-radius:999px;
+    border:1px solid rgba(148,163,184,0.55);
+    background:rgba(2,6,23,0.35);
+    color:var(--text-main);
+    outline:none;
+    font-size:0.78rem;
+  }
+  .search-input::placeholder{ color: rgba(156,163,175,0.75); }
+  .search-input:focus{
+    border-color: rgba(56,189,248,0.9);
+    box-shadow: 0 0 0 3px rgba(56,189,248,0.18);
+  }
+  .btn-clear{
+    height:36px;
+    padding:0 12px;
+    border-radius:999px;
+    border:1px solid rgba(148,163,184,0.6);
+    background:rgba(15,23,42,0.96);
+    color:var(--text-main);
+    font-size:0.78rem;
+    cursor:pointer;
+    transition:transform .12s ease, border-color .12s ease;
+    white-space:nowrap;
+  }
+  .btn-clear:hover{ transform: translateY(-1px); border-color: var(--accent); }
+
+  /* === CHIPS FILTER === */
+  .chip-row{
+    margin-top:10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .chip{
+    border:1px solid rgba(148,163,184,0.45);
+    background: rgba(2,6,23,0.25);
+    color: var(--text-muted);
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:0.74rem;
+    cursor:pointer;
+    transition: transform .12s ease, border-color .12s ease, background .12s ease, color .12s ease;
+    user-select:none;
+  }
+  .chip:hover{ transform: translateY(-1px); border-color: rgba(56,189,248,0.75); }
+  .chip.active{
+    color: #0b1120;
+    font-weight:700;
+    border-color: rgba(56,189,248,0.9);
+    background: linear-gradient(135deg, rgba(249,115,22,0.95), rgba(56,189,248,0.95));
+  }
+
+  /* === KATEGORI SECTION === */
+  .category-block{
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(148,163,184,0.35);
+  }
+  .category-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin: 4px 2px 10px;
+  }
+  .category-title{
+    font-size:0.92rem;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .cat-dot{
+    width:10px;height:10px;border-radius:999px;
+    background: linear-gradient(135deg,var(--primary),var(--accent));
+    box-shadow: 0 8px 20px rgba(56,189,248,0.18);
+  }
+  .category-count{
+    font-size:0.74rem;
+    color: var(--text-muted);
+    border:1px solid rgba(148,163,184,0.35);
+    background: rgba(15,23,42,0.7);
+    padding:4px 10px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .empty-note{
+    display:none;
+    margin-top:8px;
+    padding:10px;
+    border-radius:14px;
+    border:1px solid rgba(148,163,184,0.25);
+    color: var(--text-muted);
+    background: rgba(2,6,23,0.25);
+    font-size:0.78rem;
+  }
+  .empty-note.show{ display:block; }
+
+  @media (max-width:720px){
+    .content-header{ display:flex; flex-direction:column; align-items:stretch; gap:10px; }
+    .search-wrap{ margin-left:0; width:100%; }
+  }
+</style>
+
 
 
 </body>
