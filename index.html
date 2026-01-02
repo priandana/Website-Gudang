@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Pergudangan Hub — PRO</title>
+  <meta name="description" content="Portal PRO untuk link spreadsheet pergudangan: pencarian, filter, import/export, PWA."/>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0B1220"/>
+  <link rel="icon" href="icon-512.png" sizes="512x512"/>
+  <link rel="stylesheet" href="assets/styles.css"/>
+  <link rel="preload" href="assets/app.js" as="script">
+</head>
+<body>
+  <header class="hd">
+    <div class="brand">
+      <img class="appicon" src="icon-512.png" alt="" width="32" height="32"/>
+      <div>
+        <h1>Pergudangan Hub <span class="pro-badge">PRO</span></h1>
+        <p>Semua spreadsheet gudang, fitur lengkap, siap Vercel + PWA.</p>
+      </div>
+    </div>
+    <div class="hdr-actions">
+      <button id="installBtn" class="btn ghost" hidden>Install App</button>
+      <button id="themeToggle" class="btn icon" title="Gelap/Terang">🌓</button>
+      <a class="btn ghost" href="data/spreadsheets.json" target="_blank" rel="noopener">Data JSON</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="search-bar">
+        <span class="search-icn">🔎</span>
+        <input id="searchInput" type="search" placeholder="Cari judul, kategori, owner, tag, atau URL…  (tekan / untuk fokus)"/>
+      </div>
+      <div class="quick">
+        <div class="chips" id="categoryChips" aria-label="Filter kategori"></div>
+        <div class="chips" id="tagChips" aria-label="Filter tag"></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span id="totalCount">0</span><small>Total</small></div>
+        <div class="stat"><span id="categoryCount">0</span><small>Kategori</small></div>
+        <div class="stat"><span id="ownerCount">0</span><small>Owner</small></div>
+        <div class="stat"><span id="tagCount">0</span><small>Tag</small></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <aside class="sidebar">
+      <h3>Tampilan Tersimpan</h3>
+      <div id="views" class="views"></div>
+      <div class="view-actions">
+        <button id="saveViewBtn" class="btn small">Simpan Tampilan</button>
+        <button id="resetViewBtn" class="btn small ghost">Reset</button>
+      </div>
+      <hr/>
+      <h3>Filter</h3>
+      <label class="lb">Owner
+        <select id="ownerFilter"><option value="">Semua</option></select>
+      </label>
+      <label class="lb">Sort
+        <select id="sortSelect">
+          <option value="updated_desc">Terbaru diperbarui</option>
+          <option value="title_asc">Judul (A-Z)</option>
+          <option value="title_desc">Judul (Z-A)</option>
+        </select>
+      </label>
+      <label class="lb toggle"><input type="checkbox" id="embedToggle" checked><span>Preview di modal</span></label>
+      <label class="lb toggle"><input type="checkbox" id="compactToggle"><span>Mode ringkas</span></label>
+      <hr/>
+      <div class="import-export">
+        <h3>Import/Export</h3>
+        <input id="filePicker" type="file" accept=".json,.csv"/>
+        <div class="ie-actions">
+          <button id="importBtn" class="btn small">Import</button>
+          <button id="exportJSONBtn" class="btn small ghost">Export JSON</button>
+          <button id="exportCSVBtn" class="btn small ghost">Export CSV</button>
+        </div>
+        <small>Import JSON mengikuti format `data/spreadsheets.json`. CSV: judul,link,kategori,owner,tags,deskripsi,updated_at</small>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="toolbar">
+        <div class="left">
+          <button id="addBtn" class="btn">+ Tambah (lokal)</button>
+          <button id="bulkOpenBtn" class="btn ghost">Buka (terpilih)</button>
+          <button id="bulkCopyBtn" class="btn ghost">Salin Link (terpilih)</button>
+          <span id="selCount" class="muted">0 dipilih</span>
+        </div>
+        <div class="right">
+          <button id="clearFiltersBtn" class="btn ghost">Bersihkan filter</button>
+        </div>
+      </div>
+
+      <section id="cards" class="cards" aria-live="polite"></section>
+      <div id="pager" class="pager"></div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-label="Pratinjau Spreadsheet">
+    <div class="modal-content">
+      <button id="modalClose" class="btn icon" aria-label="Tutup">✕</button>
+      <iframe id="previewFrame" title="Pratinjau Spreadsheet" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <footer class="ft">
+    <p>© <span id="year"></span> Pergudangan Hub PRO · Siap offline (PWA). Made for Vercel.</p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
