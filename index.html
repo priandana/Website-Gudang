@@ -33,6 +33,7 @@
       justify-content:center;
     }
 
+    /* blobs */
     .blob {
       position: fixed;
       border-radius: 999px;
@@ -61,7 +62,7 @@
       border-radius: 26px;
       border: 1px solid var(--border);
       box-shadow: 0 24px 60px rgba(15,23,42,0.95);
-      padding: 18px 18px 18px;
+      padding: 18px;
       max-height: calc(100vh - 40px);
       display:flex;
       flex-direction:column;
@@ -119,11 +120,10 @@
       font-size:0.74rem;
       color:var(--text-muted);
       text-align:right;
+      line-height:1.3;
     }
 
-    .hero {
-      margin-bottom:10px;
-    }
+    .hero { margin-bottom:10px; }
     .hero-title {
       font-size:1.6rem;
       font-weight:600;
@@ -148,7 +148,6 @@
       margin-bottom:8px;
       font-size:0.72rem;
     }
-
     .pill {
       padding:4px 9px;
       border-radius:999px;
@@ -157,34 +156,162 @@
       color:var(--text-muted);
     }
 
+    /* ===== CONTENT: toolbar di luar scroll, list yang scroll ===== */
     .content{
-  margin-top:8px;
-  border-radius:18px;
-  border:1px solid rgba(148,163,184,0.4);
-  background:rgba(15,23,42,0.96);
-  flex:1;
-  overflow:auto;
-  overflow-x:hidden;        /* IMPORTANT: cegah scroll samping */
-  padding:0;                /* padding dipindah ke body */
-}
+      margin-top:8px;
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,0.4);
+      background:rgba(15,23,42,0.96);
+      flex:1;
 
-.content-header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  padding:10px;
-  border-bottom:1px solid rgba(148,163,184,0.25);
-  background:rgba(15,23,42,0.98);
-  backdrop-filter: blur(10px);
-  border-top-left-radius:18px;
-  border-top-right-radius:18px;
-  overflow:hidden;          /* biar rapih & gak “nyembul” */
-}
+      display:flex;
+      flex-direction:column;
 
-.content-body{
-  padding:10px;
-}
+      overflow:hidden; /* content tidak scroll */
+      min-height: 0;   /* penting untuk flex container agar scroll anaknya jalan */
+    }
 
+    .content-header{
+      padding:10px;
+      border-bottom:1px solid rgba(148,163,184,0.25);
+      background:rgba(15,23,42,0.98);
+      backdrop-filter: blur(10px);
+    }
+
+    .content-body{
+      padding:10px;
+      overflow:auto;
+      overflow-x:hidden;
+      -webkit-overflow-scrolling: touch;
+      min-height:0;
+    }
+
+    .row-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    /* Search */
+    .search-wrap{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      width:min(560px, 100%);
+      margin-left:auto;
+      min-width:0;
+    }
+    .search-input{
+      flex:1;
+      height:36px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.55);
+      background:rgba(2,6,23,0.35);
+      color:var(--text-main);
+      outline:none;
+      font-size:0.78rem;
+      min-width:0;
+    }
+    .search-input::placeholder{ color: rgba(156,163,175,0.75); }
+    .search-input:focus{
+      border-color: rgba(56,189,248,0.9);
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.18);
+    }
+    .btn-clear{
+      height:36px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.6);
+      background:rgba(15,23,42,0.96);
+      color:var(--text-main);
+      font-size:0.78rem;
+      cursor:pointer;
+      transition:transform .12s ease, border-color .12s ease;
+      white-space:nowrap;
+    }
+    .btn-clear:hover{ transform: translateY(-1px); border-color: var(--accent); }
+
+    /* Chips (HP bisa swipe) */
+    .chip-row{
+      margin-top:10px;
+      display:flex;
+      gap:8px;
+      flex-wrap:nowrap;
+      overflow-x:auto;
+      padding-bottom:2px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .chip-row::-webkit-scrollbar{ height:0; }
+    .chip{
+      flex: 0 0 auto;
+      border:1px solid rgba(148,163,184,0.45);
+      background: rgba(2,6,23,0.25);
+      color: var(--text-muted);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:0.74rem;
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease, color .12s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip:hover{ transform: translateY(-1px); border-color: rgba(56,189,248,0.75); }
+    .chip.active{
+      color: #0b1120;
+      font-weight:700;
+      border-color: rgba(56,189,248,0.9);
+      background: linear-gradient(135deg, rgba(249,115,22,0.95), rgba(56,189,248,0.95));
+    }
+
+    /* Kategori */
+    .category-block{
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(148,163,184,0.35);
+    }
+    .category-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin: 4px 2px 10px;
+    }
+    .category-title{
+      font-size:0.92rem;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .cat-dot{
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(135deg,var(--primary),var(--accent));
+      box-shadow: 0 8px 20px rgba(56,189,248,0.18);
+    }
+    .category-count{
+      font-size:0.74rem;
+      color: var(--text-muted);
+      border:1px solid rgba(148,163,184,0.35);
+      background: rgba(15,23,42,0.7);
+      padding:4px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+    .empty-note{
+      display:none;
+      margin-top:8px;
+      padding:10px;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,0.25);
+      color: var(--text-muted);
+      background: rgba(2,6,23,0.25);
+      font-size:0.78rem;
+    }
+    .empty-note.show{ display:block; }
+
+    /* grid cards */
     .grid {
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -231,6 +358,7 @@
       align-items:center;
       justify-content:center;
       font-size:0.9rem;
+      flex:0 0 auto;
     }
 
     .name {
@@ -250,10 +378,9 @@
       gap:8px;
       font-size:0.72rem;
       color:var(--text-muted);
+      flex-wrap:wrap;
     }
-    .meta span strong {
-      color:var(--text-main);
-    }
+    .meta span strong { color:var(--text-main); }
 
     .actions {
       margin-top:6px;
@@ -324,32 +451,94 @@
       font-weight:500;
     }
 
+    /* PRELOADER */
+    .preloader{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: radial-gradient(circle at top left, #1d4ed8, #020617 45%, #0b1120 100%);
+      transition: opacity .35s ease, visibility .35s ease;
+    }
+    .preloader.hide{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+    }
+    .pre-card{
+      width:min(420px, 92vw);
+      border-radius:22px;
+      border:1px solid rgba(148,163,184,0.35);
+      background:rgba(15,23,42,0.92);
+      box-shadow:0 24px 60px rgba(15,23,42,0.95);
+      padding:18px 16px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .pre-logo{
+      width:48px;
+      height:48px;
+      border-radius:18px;
+      background: conic-gradient(from 160deg,#f97316,#1d4ed8,#38bdf8,#f97316);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 12px 28px rgba(15,23,42,0.9);
+      flex:0 0 auto;
+    }
+    .pre-logo-inner{
+      width:36px;
+      height:36px;
+      border-radius:14px;
+      background:#020617;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      letter-spacing:.06em;
+      color:var(--primary);
+      font-size:0.85rem;
+    }
+    .pre-text{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width:0;
+    }
+    .pre-title{ font-weight:700; font-size:0.95rem; }
+    .pre-sub{ color:var(--text-muted); font-size:0.78rem; }
+
+    .spinner{
+      margin-left:auto;
+      width:20px;
+      height:20px;
+      border-radius:999px;
+      border:2px solid rgba(148,163,184,0.35);
+      border-top-color: rgba(56,189,248,0.95);
+      animation: spin .9s linear infinite;
+      flex:0 0 auto;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
     @media (max-width:720px) {
-      body {
-        padding:12px;
-      }
-      .shell {
-        padding:12px 10px 12px;
-        border-radius:20px;
-      }
-      .hero-title {
-        font-size:1.4rem;
-      }
+      body { padding:12px; }
+      .shell { padding:12px 10px; border-radius:20px; }
+      .hero-title { font-size:1.35rem; }
+      .row-topbar{ flex-direction:column; align-items:stretch; }
+      .search-wrap{ width:100%; margin-left:0; }
+      .top-info{ text-align:left; }
     }
   </style>
 </head>
 <body>
-  <body>
   <!-- PRELOADER -->
   <div class="preloader" id="preloader" aria-label="Loading">
     <div class="pre-card">
       <div class="pre-logo">
         <div class="pre-logo-inner">PR</div>
-        <!-- Kalau mau pakai logo PNG:
-        <div class="pre-logo-inner" style="padding:6px;background:#020617;">
-          <img src="logo-praktis.png" alt="Praktis" style="width:100%;height:100%;object-fit:contain;">
-        </div>
-        -->
       </div>
       <div class="pre-text">
         <div class="pre-title">Praktis</div>
@@ -375,7 +564,7 @@
         </div>
       </div>
       <div class="top-info">
-        Total link: <strong id="totalLinks">2</strong><br/>
+        Total link: <strong id="totalLinks">0</strong><br/>
         Akses tetap mengikuti izin Google / Metabase
       </div>
     </div>
@@ -396,122 +585,110 @@
 
     <section class="content">
       <header class="content-header">
-  <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-    <span id="resultInfo">Daftar link (0)</span>
+        <div class="row-topbar">
+          <span id="resultInfo">Daftar link (0)</span>
 
-    <div class="search-wrap">
-      <input id="searchInput" class="search-input" type="search"
-        placeholder="Cari: nama, tipe, badge… (contoh: metabase / inbound / qc)" autocomplete="off" />
-      <button id="clearSearch" class="btn-clear" type="button">Reset</button>
-    </div>
-  </div>
+          <div class="search-wrap">
+            <input id="searchInput" class="search-input" type="search"
+              placeholder="Cari: nama, tipe, badge… (contoh: metabase / inbound / qc)" autocomplete="off" />
+            <button id="clearSearch" class="btn-clear" type="button">Reset</button>
+          </div>
+        </div>
 
-  <div class="chip-row" id="chipRow">
-    <button class="chip active" type="button" data-filter="All">Semua</button>
-    <button class="chip" type="button" data-filter="Umum">Umum</button>
-    <button class="chip" type="button" data-filter="Finishgood">Finishgood</button>
-    <button class="chip" type="button" data-filter="Material">Material</button>
-  </div>
-</header>
+        <div class="chip-row" id="chipRow" aria-label="Filter kategori">
+          <button class="chip active" type="button" data-filter="All">Semua</button>
+          <button class="chip" type="button" data-filter="Umum">Umum</button>
+          <button class="chip" type="button" data-filter="Finishgood">Finishgood</button>
+          <button class="chip" type="button" data-filter="Material">Material</button>
+        </div>
+      </header>
 
+      <div class="content-body">
+        <!-- KATEGORI: UMUM -->
+        <section class="category-block" id="catUmum">
+          <div class="category-head">
+            <div class="category-title"><span class="cat-dot"></span> Umum</div>
+            <div class="category-count" id="countUmum">0 link</div>
+          </div>
+          <div class="grid" id="gridUmum"></div>
+          <div class="empty-note" id="emptyUmum">Tidak ada link yang cocok di kategori Umum.</div>
+        </section>
 
-<div class="content-body">
-      <!-- KATEGORI: UMUM -->
-<section class="category-block" id="catUmum">
-  <div class="category-head">
-    <div class="category-title"><span class="cat-dot"></span> Umum</div>
-    <div class="category-count" id="countUmum">0 link</div>
-  </div>
-  <div class="grid" id="gridUmum"></div>
-  <div class="empty-note" id="emptyUmum">Tidak ada link yang cocok di kategori Umum.</div>
-</section>
+        <!-- KATEGORI: FINISHGOOD -->
+        <section class="category-block" id="catFinishgood">
+          <div class="category-head">
+            <div class="category-title"><span class="cat-dot"></span> Finishgood</div>
+            <div class="category-count" id="countFinishgood">0 link</div>
+          </div>
+          <div class="grid" id="gridFinishgood"></div>
+          <div class="empty-note" id="emptyFinishgood">Tidak ada link yang cocok di kategori Finishgood.</div>
+        </section>
 
-<!-- KATEGORI: FINISHGOOD -->
-<section class="category-block" id="catFinishgood">
-  <div class="category-head">
-    <div class="category-title"><span class="cat-dot"></span> Finishgood</div>
-    <div class="category-count" id="countFinishgood">0 link</div>
-  </div>
-  <div class="grid" id="gridFinishgood"></div>
-  <div class="empty-note" id="emptyFinishgood">Tidak ada link yang cocok di kategori Finishgood.</div>
-</section>
+        <!-- KATEGORI: MATERIAL -->
+        <section class="category-block" id="catMaterial">
+          <div class="category-head">
+            <div class="category-title"><span class="cat-dot"></span> Material</div>
+            <div class="category-count" id="countMaterial">0 link</div>
+          </div>
+          <div class="grid" id="gridMaterial"></div>
+          <div class="empty-note" id="emptyMaterial">Tidak ada link yang cocok di kategori Material.</div>
+        </section>
 
-<!-- KATEGORI: MATERIAL -->
-<section class="category-block" id="catMaterial">
-  <div class="category-head">
-    <div class="category-title"><span class="cat-dot"></span> Material</div>
-    <div class="category-count" id="countMaterial">0 link</div>
-  </div>
-  <div class="grid" id="gridMaterial"></div>
-  <div class="empty-note" id="emptyMaterial">Tidak ada link yang cocok di kategori Material.</div>
-</section>
+        <!-- Penampung card lama (akan dipindah oleh JS) -->
+        <div id="allCards" style="display:none;">
+          <!-- ====== CONTOH 3 LINK (SILAKAN TAMBAH) ====== -->
+          <article class="card-item" data-category="Umum">
+            <div class="badge">5R</div>
+            <div class="name-row">
+              <div class="icon">📊</div>
+              <div class="name">Spreadsheet 01</div>
+            </div>
+            <p class="desc">5R adalah metode penataan tempat kerja dari Jepang (5S) yang diterjemahkan menjadi Ringkas, Rapi, Resik, Rawat, Rajin.</p>
+            <div class="meta">
+              <span>Tipe: <strong>5R</strong></span>
+              <span>No: <strong>1</strong></span>
+            </div>
+            <div class="actions">
+              <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1XdpWzeDne-g8TZZLqNzlXk2Wbq6hNgUACI6U7BcTqzg/edit?gid=607962061#gid=607962061" target="_blank" rel="noopener noreferrer">Buka</a>
+              <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1XdpWzeDne-g8TZZLqNzlXk2Wbq6hNgUACI6U7BcTqzg/edit?gid=607962061#gid=607962061" title="Copy link">🔗</button>
+            </div>
+          </article>
 
-<!-- Penampung card lama (akan dipindah oleh JS) -->
-<div id="allCards" style="display:none;">
-  <article class="card-item" data-category="Umum">
-        <div class="badge">5R</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 01</div>
-        </div>
-        <p class="desc">5R adalah metode penataan tempat kerja dari Jepang (berasal dari 5S: Seiri, Seiton, Seiso, Seiketsu, Shitsuke) yang diterjemahkan menjadi Ringkas, Rapi, Resik, Rawat, dan Rajin, bertujuan meningkatkan efisiensi, produktivitas, dan keselamatan kerja dengan menciptakan lingkungan kerja yang nyaman dan terorganisir</p>
-        <div class="meta">
-          <span>Tipe: <strong>5R</strong></span>
-          <span>No: <strong>1</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1XdpWzeDne-g8TZZLqNzlXk2Wbq6hNgUACI6U7BcTqzg/edit?gid=607962061#gid=607962061" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1XdpWzeDne-g8TZZLqNzlXk2Wbq6hNgUACI6U7BcTqzg/edit?gid=607962061#gid=607962061" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
+          <article class="card-item" data-category="Finishgood">
+            <div class="badge">Output QC</div>
+            <div class="name-row">
+              <div class="icon">📈</div>
+              <div class="name">Data Output QC</div>
+            </div>
+            <p class="desc">Spreadsheet untuk melihat jumlah output yang dilakukan oleh tim QC.</p>
+            <div class="meta">
+              <span>Tipe: <strong>Output QC</strong></span>
+              <span>No: <strong>2</strong></span>
+            </div>
+            <div class="actions">
+              <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1fgt5pTaPN86wHWd2vMmk5LUw3RWTq3n8fqPSWkkcGaM/edit?hl=id&gid=1631834911#gid=1631834911" target="_blank" rel="noopener noreferrer">Buka</a>
+              <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1fgt5pTaPN86wHWd2vMmk5LUw3RWTq3n8fqPSWkkcGaM/edit?hl=id&gid=1631834911#gid=1631834911" title="Copy link">🔗</button>
+            </div>
+          </article>
 
-      <article class="card-item" data-category="Finishgood">
-        <div class="badge">Output QC</div>
-        <div class="name-row">
-          <div class="icon">📈</div>
-          <div class="name">Data Output QC</div>
+          <article class="card-item" data-category="Material">
+            <div class="badge">Outbound & Inbound</div>
+            <div class="name-row">
+              <div class="icon">📦</div>
+              <div class="name">V2</div>
+            </div>
+            <p class="desc">Data outbound dan inbound material.</p>
+            <div class="meta">
+              <span>Tipe: <strong>Material</strong></span>
+              <span>No: <strong>3</strong></span>
+            </div>
+            <div class="actions">
+              <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit?gid=207622867#gid=207622867" target="_blank" rel="noopener noreferrer">Buka</a>
+              <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit?gid=207622867#gid=207622867" title="Copy link">🔗</button>
+            </div>
+          </article>
         </div>
-        <p class="desc">Google Spreadseet ini untuk mengetahui seberapa banyak data output yang dilakukan oleh team qc</p>
-        <div class="meta">
-          <span>Tipe: <strong>Output QC</strong></span>
-          <span>No: <strong>2</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1fgt5pTaPN86wHWd2vMmk5LUw3RWTq3n8fqPSWkkcGaM/edit?hl=id&gid=1631834911#gid=1631834911" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1fgt5pTaPN86wHWd2vMmk5LUw3RWTq3n8fqPSWkkcGaM/edit?hl=id&gid=1631834911#gid=1631834911" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-
-  <article class="card-item" data-category="Material">
-        <div class="badge">Outbound & Inbound</div>
-        <div class="name-row">
-          <div class="icon">📈</div>
-          <div class="name">V2</div>
-        </div>
-        <p class="desc">Data outbound dan inbound material</p>
-        <div class="meta">
-          <span>Tipe: <strong>Metabase</strong></span>
-          <span>No: <strong>2</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit?gid=207622867#gid=207622867" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit?gid=207622867#gid=207622867" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-</div>
-</div>
+      </div>
     </section>
 
     <footer class="footer">
@@ -521,469 +698,164 @@
   </div>
 
   <script>
-  // === PRELOADER (kalau kamu pakai) ===
-  window.addEventListener("load", () => {
-    const pre = document.getElementById("preloader");
-    if (pre) setTimeout(() => pre.classList.add("hide"), 250);
-  });
+    // PRELOADER
+    window.addEventListener("load", () => {
+      const pre = document.getElementById("preloader");
+      if (pre) setTimeout(() => pre.classList.add("hide"), 250);
+    });
 
-  // === COPY BUTTON ===
-  document.querySelectorAll(".btn-copy").forEach(function(btn) {
-    btn.addEventListener("click", function() {
-      const link = btn.getAttribute("data-link");
-      if (!link) return;
-      navigator.clipboard.writeText(link).then(() => {
-        const original = btn.textContent;
-        btn.textContent = "✔";
-        setTimeout(() => { btn.textContent = original || "🔗"; }, 900);
+    // COPY BUTTON
+    function bindCopyButtons(scope=document) {
+      scope.querySelectorAll(".btn-copy").forEach(btn => {
+        if (btn.__bound) return;
+        btn.__bound = true;
+        btn.addEventListener("click", () => {
+          const link = btn.getAttribute("data-link");
+          if (!link) return;
+          navigator.clipboard.writeText(link).then(() => {
+            const original = btn.textContent;
+            btn.textContent = "✔";
+            setTimeout(() => { btn.textContent = original || "🔗"; }, 900);
+          });
+        });
       });
-    });
-  });
-
-  // === KATEGORI TARGET GRID ===
-  const allCardsWrap = document.getElementById("allCards");
-  const cards = Array.from(allCardsWrap?.querySelectorAll(".card-item") || []);
-
-  const grids = {
-    Umum: document.getElementById("gridUmum"),
-    Finishgood: document.getElementById("gridFinishgood"),
-    Material: document.getElementById("gridMaterial"),
-  };
-
-  const counts = {
-    Umum: document.getElementById("countUmum"),
-    Finishgood: document.getElementById("countFinishgood"),
-    Material: document.getElementById("countMaterial"),
-  };
-
-  const empties = {
-    Umum: document.getElementById("emptyUmum"),
-    Finishgood: document.getElementById("emptyFinishgood"),
-    Material: document.getElementById("emptyMaterial"),
-  };
-
-  function normalizeCategory(val){
-    const v = (val || "").toLowerCase().trim();
-    if (v === "finishgood") return "Finishgood";
-    if (v === "material") return "Material";
-    return "Umum"; // default
-  }
-
-  // pindahin card ke grid sesuai kategori
-  cards.forEach(card => {
-    const cat = normalizeCategory(card.getAttribute("data-category"));
-    card.setAttribute("data-category", cat);
-    (grids[cat] || grids.Umum).appendChild(card);
-  });
-
-  // === SEARCH + CHIP FILTER ===
-  const searchInput = document.getElementById("searchInput");
-  const clearBtn = document.getElementById("clearSearch");
-  const resultInfo = document.getElementById("resultInfo");
-  const chipRow = document.getElementById("chipRow");
-  let activeChip = "All";
-
-  function getCardText(card){
-    const name = card.querySelector(".name")?.textContent || "";
-    const desc = card.querySelector(".desc")?.textContent || "";
-    const badge = card.querySelector(".badge")?.textContent || "";
-    const meta = card.querySelector(".meta")?.textContent || "";
-    const url = card.querySelector(".btn-main")?.getAttribute("href") || "";
-    const cat = card.getAttribute("data-category") || "";
-    return (name + " " + desc + " " + badge + " " + meta + " " + url + " " + cat).toLowerCase();
-  }
-
-  const cardIndex = cards.map(c => ({ el: c, text: getCardText(c) }));
-
-  function updateCounts(){
-    ["Umum","Finishgood","Material"].forEach(cat => {
-      const grid = grids[cat];
-      const total = grid.querySelectorAll(".card-item").length;
-
-      // hitung yang terlihat (display bukan none)
-      const visible = Array.from(grid.querySelectorAll(".card-item")).filter(el => el.style.display !== "none").length;
-
-      if (counts[cat]) counts[cat].textContent = `${visible}/${total} link`;
-      if (empties[cat]) empties[cat].classList.toggle("show", visible === 0);
-    });
-  }
-
-  function applyFilter(){
-    const q = (searchInput?.value || "").trim().toLowerCase();
-    let shown = 0;
-
-    cardIndex.forEach(item => {
-      const cat = item.el.getAttribute("data-category") || "Umum";
-      const matchSearch = !q || item.text.includes(q);
-      const matchChip = (activeChip === "All") || (cat === activeChip);
-
-      const ok = matchSearch && matchChip;
-      item.el.style.display = ok ? "" : "none";
-      if (ok) shown++;
-    });
-
-    const total = cards.length;
-    if (resultInfo) {
-      if (q || activeChip !== "All") {
-        const chipLabel = activeChip === "All" ? "Semua" : activeChip;
-        resultInfo.textContent = `Hasil: ${shown} dari ${total} link • Filter: ${chipLabel}${q ? ` • Kata: "${q}"` : ""}`;
-      } else {
-        resultInfo.textContent = `Daftar link (${total})`;
-      }
     }
 
-    updateCounts();
-  }
+    // KATEGORI GRID
+    const allCardsWrap = document.getElementById("allCards");
+    const cards = Array.from(allCardsWrap?.querySelectorAll(".card-item") || []);
 
-  // chips click
-  if (chipRow) {
-    chipRow.addEventListener("click", (e) => {
-      const btn = e.target.closest(".chip");
-      if (!btn) return;
+    const grids = {
+      Umum: document.getElementById("gridUmum"),
+      Finishgood: document.getElementById("gridFinishgood"),
+      Material: document.getElementById("gridMaterial"),
+    };
 
-      // set active
-      chipRow.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
-      btn.classList.add("active");
+    const counts = {
+      Umum: document.getElementById("countUmum"),
+      Finishgood: document.getElementById("countFinishgood"),
+      Material: document.getElementById("countMaterial"),
+    };
 
-      activeChip = btn.getAttribute("data-filter") || "All";
-      applyFilter();
+    const empties = {
+      Umum: document.getElementById("emptyUmum"),
+      Finishgood: document.getElementById("emptyFinishgood"),
+      Material: document.getElementById("emptyMaterial"),
+    };
+
+    function normalizeCategory(val){
+      const v = (val || "").toLowerCase().trim();
+      if (v === "finishgood") return "Finishgood";
+      if (v === "material") return "Material";
+      return "Umum";
+    }
+
+    // pindah kartu ke grid
+    cards.forEach(card => {
+      const cat = normalizeCategory(card.getAttribute("data-category"));
+      card.setAttribute("data-category", cat);
+      (grids[cat] || grids.Umum).appendChild(card);
     });
-  }
 
-  // search
-  if (searchInput) {
-    searchInput.addEventListener("input", applyFilter);
-    searchInput.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        searchInput.value = "";
-        applyFilter();
-        searchInput.blur();
+    // set total link
+    const totalLinks = document.getElementById("totalLinks");
+    if (totalLinks) totalLinks.textContent = String(cards.length);
+
+    // bind copy buttons setelah dipindahkan
+    bindCopyButtons(document);
+
+    // SEARCH + CHIP FILTER
+    const searchInput = document.getElementById("searchInput");
+    const clearBtn = document.getElementById("clearSearch");
+    const resultInfo = document.getElementById("resultInfo");
+    const chipRow = document.getElementById("chipRow");
+    let activeChip = "All";
+
+    function getCardText(card){
+      const name = card.querySelector(".name")?.textContent || "";
+      const desc = card.querySelector(".desc")?.textContent || "";
+      const badge = card.querySelector(".badge")?.textContent || "";
+      const meta = card.querySelector(".meta")?.textContent || "";
+      const url = card.querySelector(".btn-main")?.getAttribute("href") || "";
+      const cat = card.getAttribute("data-category") || "";
+      return (name + " " + desc + " " + badge + " " + meta + " " + url + " " + cat).toLowerCase();
+    }
+
+    const cardIndex = cards.map(c => ({ el: c, text: getCardText(c) }));
+
+    function updateCounts(){
+      ["Umum","Finishgood","Material"].forEach(cat => {
+        const grid = grids[cat];
+        const total = grid.querySelectorAll(".card-item").length;
+        const visible = Array.from(grid.querySelectorAll(".card-item")).filter(el => el.style.display !== "none").length;
+        if (counts[cat]) counts[cat].textContent = `${visible}/${total} link`;
+        if (empties[cat]) empties[cat].classList.toggle("show", visible === 0);
+      });
+    }
+
+    function applyFilter(){
+      const q = (searchInput?.value || "").trim().toLowerCase();
+      let shown = 0;
+
+      cardIndex.forEach(item => {
+        const cat = item.el.getAttribute("data-category") || "Umum";
+        const matchSearch = !q || item.text.includes(q);
+        const matchChip = (activeChip === "All") || (cat === activeChip);
+        const ok = matchSearch && matchChip;
+        item.el.style.display = ok ? "" : "none";
+        if (ok) shown++;
+      });
+
+      const total = cards.length;
+      if (resultInfo) {
+        if (q || activeChip !== "All") {
+          const chipLabel = activeChip === "All" ? "Semua" : activeChip;
+          resultInfo.textContent = `Hasil: ${shown} dari ${total} link • Filter: ${chipLabel}${q ? ` • Kata: "${q}"` : ""}`;
+        } else {
+          resultInfo.textContent = `Daftar link (${total})`;
+        }
       }
-    });
-  }
 
-  if (clearBtn) {
-    clearBtn.addEventListener("click", () => {
-      if (searchInput) searchInput.value = "";
-      activeChip = "All";
-      if (chipRow) {
+      updateCounts();
+    }
+
+    if (chipRow) {
+      chipRow.addEventListener("click", (e) => {
+        const btn = e.target.closest(".chip");
+        if (!btn) return;
         chipRow.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
-        chipRow.querySelector('.chip[data-filter="All"]')?.classList.add("active");
-      }
-      applyFilter();
-      searchInput?.focus();
-    });
-  }
-
-  // init
-  applyFilter();
-</script>
-
-
-
-
-  <style>
-  /* === SEARCH BAR === */
-  .search-wrap{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    width:min(520px, 100%);
-    margin-left:auto;
-  }
-  .search-input{
-    flex:1;
-    height:36px;
-    padding:0 12px;
-    border-radius:999px;
-    border:1px solid rgba(148,163,184,0.55);
-    background:rgba(2,6,23,0.35);
-    color:var(--text-main);
-    outline:none;
-    font-size:0.78rem;
-  }
-  .search-input::placeholder{ color: rgba(156,163,175,0.75); }
-  .search-input:focus{
-    border-color: rgba(56,189,248,0.9);
-    box-shadow: 0 0 0 3px rgba(56,189,248,0.18);
-  }
-  .btn-clear{
-    height:36px;
-    padding:0 12px;
-    border-radius:999px;
-    border:1px solid rgba(148,163,184,0.6);
-    background:rgba(15,23,42,0.96);
-    color:var(--text-main);
-    font-size:0.78rem;
-    cursor:pointer;
-    transition:transform .12s ease, border-color .12s ease;
-  }
-  .btn-clear:hover{ transform: translateY(-1px); border-color: var(--accent); }
-
-  /* Responsive: search turun ke baris baru */
-  @media (max-width:720px){
-    .content-header{
-      flex-direction:column;
-      align-items:stretch;
-      gap:10px;
+        btn.classList.add("active");
+        activeChip = btn.getAttribute("data-filter") || "All";
+        applyFilter();
+      });
     }
-    .search-wrap{ margin-left:0; width:100%; }
-  }
 
-  /* === LOADING SCREEN (PRELOADER) === */
-  .preloader{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background: radial-gradient(circle at top left, #1d4ed8, #020617 45%, #0b1120 100%);
-    transition: opacity .35s ease, visibility .35s ease;
-  }
-  .preloader.hide{
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-  }
-  .pre-card{
-    width:min(420px, 92vw);
-    border-radius:22px;
-    border:1px solid rgba(148,163,184,0.35);
-    background:rgba(15,23,42,0.92);
-    box-shadow:0 24px 60px rgba(15,23,42,0.95);
-    padding:18px 16px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-  }
-  .pre-logo{
-    width:48px;
-    height:48px;
-    border-radius:18px;
-    background: conic-gradient(from 160deg,#f97316,#1d4ed8,#38bdf8,#f97316);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 12px 28px rgba(15,23,42,0.9);
-    flex:0 0 auto;
-  }
-  .pre-logo-inner{
-    width:36px;
-    height:36px;
-    border-radius:14px;
-    background:#020617;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:800;
-    letter-spacing:.06em;
-    color:var(--primary);
-    font-size:0.85rem;
-  }
-  .pre-text{
-    display:flex;
-    flex-direction:column;
-    gap:2px;
-    min-width:0;
-  }
-  .pre-title{ font-weight:700; font-size:0.95rem; }
-  .pre-sub{ color:var(--text-muted); font-size:0.78rem; }
+    if (searchInput) {
+      searchInput.addEventListener("input", applyFilter);
+      searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          searchInput.value = "";
+          applyFilter();
+          searchInput.blur();
+        }
+      });
+    }
 
-  .spinner{
-    margin-left:auto;
-    width:20px;
-    height:20px;
-    border-radius:999px;
-    border:2px solid rgba(148,163,184,0.35);
-    border-top-color: rgba(56,189,248,0.95);
-    animation: spin .9s linear infinite;
-    flex:0 0 auto;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-</style>
-    <style>
-  .category-block{
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px dashed rgba(148,163,184,0.35);
-  }
-  .category-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin: 4px 2px 10px;
-  }
-  .category-title{
-    font-size:0.92rem;
-    font-weight:700;
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .cat-dot{
-    width:10px;height:10px;border-radius:999px;
-    background: linear-gradient(135deg,var(--primary),var(--accent));
-    box-shadow: 0 8px 20px rgba(56,189,248,0.18);
-  }
-  .category-count{
-    font-size:0.74rem;
-    color: var(--text-muted);
-    border:1px solid rgba(148,163,184,0.35);
-    background: rgba(15,23,42,0.7);
-    padding:4px 10px;
-    border-radius:999px;
-  }
-  .empty-note{
-    display:none;
-    margin-top:8px;
-    padding:10px;
-    border-radius:14px;
-    border:1px solid rgba(148,163,184,0.25);
-    color: var(--text-muted);
-    background: rgba(2,6,23,0.25);
-    font-size:0.78rem;
-  }
-  .empty-note.show{ display:block; }
-</style>
-    <style>
-  /* === STICKY HEADER DI DALAM .content === */
-  .content { position: relative; }
-  .content-header{
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    padding: 10px 10px;
-    margin: -10px -10px 10px; /* biar nempel full ke border content */
-    border-bottom: 1px solid rgba(148,163,184,0.25);
-    background: rgba(15,23,42,0.92);
-    backdrop-filter: blur(10px);
-  }
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        if (searchInput) searchInput.value = "";
+        activeChip = "All";
+        if (chipRow) {
+          chipRow.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+          chipRow.querySelector('.chip[data-filter="All"]')?.classList.add("active");
+        }
+        applyFilter();
+        searchInput?.focus();
+      });
+    }
 
-  /* === SEARCH BAR === */
-  .search-wrap{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    width:min(560px, 100%);
-    margin-left:auto;
-  }
-  .search-input{
-    flex:1;
-    height:36px;
-    padding:0 12px;
-    border-radius:999px;
-    border:1px solid rgba(148,163,184,0.55);
-    background:rgba(2,6,23,0.35);
-    color:var(--text-main);
-    outline:none;
-    font-size:0.78rem;
-  }
-  .search-input::placeholder{ color: rgba(156,163,175,0.75); }
-  .search-input:focus{
-    border-color: rgba(56,189,248,0.9);
-    box-shadow: 0 0 0 3px rgba(56,189,248,0.18);
-  }
-  .btn-clear{
-    height:36px;
-    padding:0 12px;
-    border-radius:999px;
-    border:1px solid rgba(148,163,184,0.6);
-    background:rgba(15,23,42,0.96);
-    color:var(--text-main);
-    font-size:0.78rem;
-    cursor:pointer;
-    transition:transform .12s ease, border-color .12s ease;
-    white-space:nowrap;
-  }
-  .btn-clear:hover{ transform: translateY(-1px); border-color: var(--accent); }
-
-  /* === CHIPS FILTER === */
-  .chip-row{
-    margin-top:10px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-  }
-  .chip{
-    border:1px solid rgba(148,163,184,0.45);
-    background: rgba(2,6,23,0.25);
-    color: var(--text-muted);
-    padding:6px 10px;
-    border-radius:999px;
-    font-size:0.74rem;
-    cursor:pointer;
-    transition: transform .12s ease, border-color .12s ease, background .12s ease, color .12s ease;
-    user-select:none;
-  }
-  .chip:hover{ transform: translateY(-1px); border-color: rgba(56,189,248,0.75); }
-  .chip.active{
-    color: #0b1120;
-    font-weight:700;
-    border-color: rgba(56,189,248,0.9);
-    background: linear-gradient(135deg, rgba(249,115,22,0.95), rgba(56,189,248,0.95));
-  }
-
-  /* === KATEGORI SECTION === */
-  .category-block{
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px dashed rgba(148,163,184,0.35);
-  }
-  .category-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin: 4px 2px 10px;
-  }
-  .category-title{
-    font-size:0.92rem;
-    font-weight:800;
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .cat-dot{
-    width:10px;height:10px;border-radius:999px;
-    background: linear-gradient(135deg,var(--primary),var(--accent));
-    box-shadow: 0 8px 20px rgba(56,189,248,0.18);
-  }
-  .category-count{
-    font-size:0.74rem;
-    color: var(--text-muted);
-    border:1px solid rgba(148,163,184,0.35);
-    background: rgba(15,23,42,0.7);
-    padding:4px 10px;
-    border-radius:999px;
-    white-space:nowrap;
-  }
-  .empty-note{
-    display:none;
-    margin-top:8px;
-    padding:10px;
-    border-radius:14px;
-    border:1px solid rgba(148,163,184,0.25);
-    color: var(--text-muted);
-    background: rgba(2,6,23,0.25);
-    font-size:0.78rem;
-  }
-  .empty-note.show{ display:block; }
-      .search-wrap{ min-width:0; }
-.search-input{ min-width:0; }
-.chip-row{ justify-content:flex-end; }
-@media (max-width:720px){
-  .chip-row{ justify-content:flex-start; }
-}
-
-  @media (max-width:720px){
-    .content-header{ display:flex; flex-direction:column; align-items:stretch; gap:10px; }
-    .search-wrap{ margin-left:0; width:100%; }
-  }
-</style>
-
-
-
+    // init
+    applyFilter();
+  </script>
 </body>
 </html>
