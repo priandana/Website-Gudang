@@ -531,37 +531,48 @@
     });
   });
 
-  // === KATEGORISASI ===
+  // === KATEGORI TARGET GRID ===
   const allCardsWrap = document.getElementById("allCards");
   const cards = Array.from(allCardsWrap?.querySelectorAll(".card-item") || []);
 
-  const gridFinishgood = document.getElementById("gridFinishgood");
-  const gridMaterial = document.getElementById("gridMaterial");
+  const grids = {
+    Umum: document.getElementById("gridUmum"),
+    Finishgood: document.getElementById("gridFinishgood"),
+    Material: document.getElementById("gridMaterial"),
+  };
 
-  const countFinishgood = document.getElementById("countFinishgood");
-  const countMaterial = document.getElementById("countMaterial");
+  const counts = {
+    Umum: document.getElementById("countUmum"),
+    Finishgood: document.getElementById("countFinishgood"),
+    Material: document.getElementById("countMaterial"),
+  };
 
-  const emptyFinishgood = document.getElementById("emptyFinishgood");
-  const emptyMaterial = document.getElementById("emptyMaterial");
+  const empties = {
+    Umum: document.getElementById("emptyUmum"),
+    Finishgood: document.getElementById("emptyFinishgood"),
+    Material: document.getElementById("emptyMaterial"),
+  };
 
   function normalizeCategory(val){
     const v = (val || "").toLowerCase().trim();
+    if (v === "finishgood") return "Finishgood";
     if (v === "material") return "Material";
-    return "Finishgood"; // default
+    return "Umum"; // default
   }
 
-  // pindahkan card ke grid yang sesuai
+  // pindahin card ke grid sesuai kategori
   cards.forEach(card => {
     const cat = normalizeCategory(card.getAttribute("data-category"));
     card.setAttribute("data-category", cat);
-    if (cat === "Material") gridMaterial.appendChild(card);
-    else gridFinishgood.appendChild(card);
+    (grids[cat] || grids.Umum).appendChild(card);
   });
 
-  // === SEARCH / FILTER (lintas kategori) ===
+  // === SEARCH + CHIP FILTER ===
   const searchInput = document.getElementById("searchInput");
   const clearBtn = document.getElementById("clearSearch");
   const resultInfo = document.getElementById("resultInfo");
+  const chipRow = document.getElementById("chipRow");
+  let activeChip = "All";
 
   function getCardText(card){
     const name = card.querySelector(".name")?.textContent || "";
@@ -576,60 +587,89 @@
   const cardIndex = cards.map(c => ({ el: c, text: getCardText(c) }));
 
   function updateCounts(){
-    const visFinish = gridFinishgood.querySelectorAll('.card-item:not([style*="display: none"])').length;
-    const visMat = gridMaterial.querySelectorAll('.card-item:not([style*="display: none"])').length;
+    ["Umum","Finishgood","Material"].forEach(cat => {
+      const grid = grids[cat];
+      const total = grid.querySelectorAll(".card-item").length;
 
-    const totalFinish = gridFinishgood.querySelectorAll('.card-item').length;
-    const totalMat = gridMaterial.querySelectorAll('.card-item').length;
+      // hitung yang terlihat (display bukan none)
+      const visible = Array.from(grid.querySelectorAll(".card-item")).filter(el => el.style.display !== "none").length;
 
-    if (countFinishgood) countFinishgood.textContent = `${visFinish}/${totalFinish} link`;
-    if (countMaterial) countMaterial.textContent = `${visMat}/${totalMat} link`;
-
-    if (emptyFinishgood) emptyFinishgood.classList.toggle("show", visFinish === 0);
-    if (emptyMaterial) emptyMaterial.classList.toggle("show", visMat === 0);
+      if (counts[cat]) counts[cat].textContent = `${visible}/${total} link`;
+      if (empties[cat]) empties[cat].classList.toggle("show", visible === 0);
+    });
   }
 
-  function applyFilter(q){
-    const query = (q || "").trim().toLowerCase();
+  function applyFilter(){
+    const q = (searchInput?.value || "").trim().toLowerCase();
     let shown = 0;
 
     cardIndex.forEach(item => {
-      const match = !query || item.text.includes(query);
-      item.el.style.display = match ? "" : "none";
-      if (match) shown++;
+      const cat = item.el.getAttribute("data-category") || "Umum";
+      const matchSearch = !q || item.text.includes(q);
+      const matchChip = (activeChip === "All") || (cat === activeChip);
+
+      const ok = matchSearch && matchChip;
+      item.el.style.display = ok ? "" : "none";
+      if (ok) shown++;
     });
 
     const total = cards.length;
     if (resultInfo) {
-      resultInfo.textContent = query
-        ? `Hasil: ${shown} dari ${total} link`
-        : `Daftar link (${total})`;
+      if (q || activeChip !== "All") {
+        const chipLabel = activeChip === "All" ? "Semua" : activeChip;
+        resultInfo.textContent = `Hasil: ${shown} dari ${total} link • Filter: ${chipLabel}${q ? ` • Kata: "${q}"` : ""}`;
+      } else {
+        resultInfo.textContent = `Daftar link (${total})`;
+      }
     }
 
     updateCounts();
   }
 
+  // chips click
+  if (chipRow) {
+    chipRow.addEventListener("click", (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+
+      // set active
+      chipRow.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+
+      activeChip = btn.getAttribute("data-filter") || "All";
+      applyFilter();
+    });
+  }
+
+  // search
   if (searchInput) {
-    searchInput.addEventListener("input", (e) => applyFilter(e.target.value));
+    searchInput.addEventListener("input", applyFilter);
     searchInput.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         searchInput.value = "";
-        applyFilter("");
+        applyFilter();
         searchInput.blur();
       }
     });
   }
+
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
       if (searchInput) searchInput.value = "";
-      applyFilter("");
-      if (searchInput) searchInput.focus();
+      activeChip = "All";
+      if (chipRow) {
+        chipRow.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+        chipRow.querySelector('.chip[data-filter="All"]')?.classList.add("active");
+      }
+      applyFilter();
+      searchInput?.focus();
     });
   }
 
   // init
-  applyFilter("");
+  applyFilter();
 </script>
+
 
 
 
