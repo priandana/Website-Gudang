@@ -1,356 +1,52 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Spreadsheet • Praktis</title>
+// ===== ANNOUNCEMENT MODAL =====
+const LS_ANN_HIDE = "praktis_announcement_hide_v1";
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+const annBackdrop = document.getElementById("annBackdrop");
+const annClose = document.getElementById("annClose");
+const annLater = document.getElementById("annLater");
+const annOk = document.getElementById("annOk");
+const annDontShow = document.getElementById("annDontShow");
 
-<style>
-:root{
-  --bg:#020617;
-  --card:#0b1120;
-  --primary:#f97316;
-  --accent:#38bdf8;
-  --border:rgba(148,163,184,.35);
-  --text:#e5e7eb;
-  --muted:#9ca3af;
+function openAnn(){
+  if (!annBackdrop) return;
+  annBackdrop.classList.add("show");
+  annBackdrop.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+function closeAnn(){
+  if (!annBackdrop) return;
+  annBackdrop.classList.remove("show");
+  annBackdrop.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
 }
 
-*{box-sizing:border-box;margin:0;padding:0;font-family:Poppins}
-
-body{
-  min-height:100vh;
-  background:radial-gradient(circle at top left,#1d4ed8,#020617 45%,#0b1120);
-  color:var(--text);
-  padding:14px;
-  display:flex;
-  justify-content:center;
+function markAnnPreference(){
+  if (annDontShow?.checked) localStorage.setItem(LS_ANN_HIDE, "1");
 }
 
-.shell{
-  width:100%;
-  max-width:1200px;
-  background:rgba(15,23,42,.95);
-  border-radius:22px;
-  border:1px solid var(--border);
-  display:flex;
-  flex-direction:column;
-  max-height:calc(100vh - 28px);
-  overflow:hidden;
-}
-
-/* ===== HEADER ===== */
-.top{
-  padding:14px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-}
-
-.brand{display:flex;gap:10px;align-items:center}
-.logo{
-  width:36px;height:36px;border-radius:14px;
-  background:conic-gradient(from 160deg,#f97316,#1d4ed8,#38bdf8,#f97316);
-  display:flex;align-items:center;justify-content:center;
-}
-.logo span{
-  width:26px;height:26px;border-radius:10px;
-  background:#020617;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:700;font-size:.75rem;color:var(--primary)
-}
-
-.hero{padding:0 14px 10px}
-.hero h1{font-size:1.45rem;font-weight:600}
-.hero h1 span{
-  background:linear-gradient(135deg,#f97316,#38bdf8);
-  -webkit-background-clip:text;color:transparent
-}
-.hero p{color:var(--muted);font-size:.85rem;margin-top:4px}
-
-/* ===== CONTENT ===== */
-.content{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  border-top:1px solid var(--border);
-  background:rgba(15,23,42,.9);
-}
-
-/* sticky tools */
-.content-header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  background:rgba(15,23,42,.96);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--border);
-  padding:10px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.header-row{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-
-.search{
-  flex:1;
-  min-width:200px;
-  height:36px;
-  padding:0 14px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:#020617;
-  color:var(--text);
-}
-
-.reset{
-  height:36px;
-  padding:0 14px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:#020617;
-  color:var(--text);
-  cursor:pointer;
-}
-
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{
-  padding:6px 12px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:#020617;
-  color:var(--muted);
-  font-size:.75rem;
-  cursor:pointer;
-}
-.chip.active{
-  background:linear-gradient(135deg,#f97316,#38bdf8);
-  color:#020617;
-  font-weight:600;
-}
-
-/* ===== SCROLL AREA ===== */
-.content-body{
-  flex:1;
-  overflow:auto;
-  padding:12px;
-}
-
-/* ===== CATEGORY ===== */
-.category{
-  margin-bottom:18px;
-}
-.category h3{
-  font-size:.9rem;
-  margin-bottom:10px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.category h3 span{
-  font-size:.7rem;
-  color:var(--muted);
-}
-
-/* ===== CARD ===== */
-.card{
-  background:rgba(15,23,42,.98);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:12px;
-  margin-bottom:10px;
-}
-
-.card-header{
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
-.card-title{
-  font-weight:600;
-  font-size:.9rem;
-}
-
-.card-desc{
-  font-size:.78rem;
-  color:var(--muted);
-  margin-top:6px;
-}
-
-/* ===== ACTION ===== */
-.actions{
-  margin-top:10px;
-  display:flex;
-  gap:8px;
-}
-
-/* tombol buka jadi <a> */
-.open{
-  flex:1;
-  padding:8px;
-  border-radius:999px;
-  border:none;
-  background:linear-gradient(135deg,#facc15,#f97316);
-  font-weight:600;
-  cursor:pointer;
-  text-decoration:none;
-  color:#111827;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.copy{
-  width:40px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:#020617;
-  color:var(--text);
-  cursor:pointer;
-}
-
-.footer{
-  padding:10px;
-  font-size:.7rem;
-  color:var(--muted);
-  border-top:1px solid var(--border);
-  text-align:center;
-}
-</style>
-</head>
-
-<body>
-
-<div class="shell">
-
-  <div class="top">
-    <div class="brand">
-      <div class="logo"><span>PR</span></div>
-      <div>
-        <div style="font-weight:600">Portal Spreadsheet Praktis</div>
-        <div style="font-size:.7rem;color:var(--muted)">Satu halaman semua link</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero">
-    <h1>Pilih <span>spreadsheet / dashboard</span></h1>
-    <p>Klik link yang kamu butuhkan, akses mengikuti izin Google / Metabase</p>
-  </div>
-
-  <section class="content">
-
-    <!-- TOOLS -->
-    <div class="content-header">
-      <div class="header-row">
-        <input class="search" placeholder="Cari nama / tipe / kategori" id="search">
-        <button class="reset" id="reset">Reset</button>
-      </div>
-      <div class="chips" id="chips">
-        <div class="chip active" data-cat="Semua">Semua</div>
-        <div class="chip" data-cat="Umum">Umum</div>
-        <div class="chip" data-cat="Finishgood">Finishgood</div>
-        <div class="chip" data-cat="Material">Material</div>
-      </div>
-    </div>
-
-    <!-- LIST -->
-    <div class="content-body">
-
-      <div class="category" data-cat="Material">
-        <h3>Material <span>1 link</span></h3>
-
-        <div class="card" data-cat="Material" data-text="dashboard material monitoring inbound outbound material gudang">
-          <div class="card-header">
-            <div class="card-title">Dashboard Material</div>
-          </div>
-
-          <div class="card-desc">
-            Monitoring inbound & outbound material gudang.
-          </div>
-
-          <div class="actions">
-            <!-- GANTI LINK DI SINI -->
-            <a class="open" href="https://contoh-link-kamu.com" target="_blank" rel="noopener noreferrer">Buka</a>
-
-            <button class="copy" data-copy="https://contoh-link-kamu.com" title="Copy link">🔗</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="footer">
-    Catatan: perubahan data tetap dilakukan di Google Sheets / Metabase
-  </div>
-
-</div>
-
-<script>
-/* COPY */
-document.querySelectorAll(".copy").forEach(btn=>{
-  btn.addEventListener("click", async ()=>{
-    const link = btn.getAttribute("data-copy");
-    if(!link) return;
-    try{
-      await navigator.clipboard.writeText(link);
-      const old = btn.textContent;
-      btn.textContent = "✔";
-      setTimeout(()=>btn.textContent = old, 900);
-    }catch(e){
-      alert("Gagal copy. Copy manual: " + link);
-    }
-  });
+// show modal on first load (if not hidden)
+window.addEventListener("load", () => {
+  if (localStorage.getItem(LS_ANN_HIDE) !== "1") {
+    setTimeout(openAnn, 450); // biar transisi halus setelah preloader
+  }
 });
 
-/* SIMPLE SEARCH + CHIP (opsional, minimal) */
-let activeCat = "Semua";
-const searchEl = document.getElementById("search");
-const resetEl = document.getElementById("reset");
-const chipsEl = document.getElementById("chips");
+annClose?.addEventListener("click", () => { markAnnPreference(); closeAnn(); });
+annLater?.addEventListener("click", () => { markAnnPreference(); closeAnn(); showToast("Oke", "Pengumuman ditutup.", "📢"); });
+annOk?.addEventListener("click", () => { markAnnPreference(); closeAnn(); showToast("Sip!", "Terima kasih, sudah dibaca.", "✅"); });
 
-function applyFilter(){
-  const q = (searchEl.value || "").toLowerCase().trim();
-  document.querySelectorAll(".card").forEach(card=>{
-    const cat = card.getAttribute("data-cat") || "";
-    const text = (card.getAttribute("data-text") || "").toLowerCase();
-    const okCat = (activeCat==="Semua") || (cat===activeCat);
-    const okSearch = !q || text.includes(q);
-    card.style.display = (okCat && okSearch) ? "" : "none";
-  });
-}
-
-chipsEl.addEventListener("click",(e)=>{
-  const chip = e.target.closest(".chip");
-  if(!chip) return;
-  chipsEl.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
-  chip.classList.add("active");
-  activeCat = chip.getAttribute("data-cat") || "Semua";
-  applyFilter();
+// click outside to close
+annBackdrop?.addEventListener("click", (e) => {
+  if (e.target === annBackdrop) {
+    markAnnPreference();
+    closeAnn();
+  }
 });
 
-searchEl.addEventListener("input", applyFilter);
-
-resetEl.addEventListener("click", ()=>{
-  searchEl.value = "";
-  activeCat = "Semua";
-  chipsEl.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
-  chipsEl.querySelector('.chip[data-cat="Semua"]').classList.add("active");
-  applyFilter();
+// esc to close
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && annBackdrop?.classList.contains("show")) {
+    markAnnPreference();
+    closeAnn();
+  }
 });
-
-applyFilter();
-</script>
-
-</body>
-</html>
