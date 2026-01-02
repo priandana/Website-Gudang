@@ -331,6 +331,26 @@
   </style>
 </head>
 <body>
+  <body>
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader" aria-label="Loading">
+    <div class="pre-card">
+      <div class="pre-logo">
+        <div class="pre-logo-inner">PR</div>
+        <!-- Kalau mau pakai logo PNG:
+        <div class="pre-logo-inner" style="padding:6px;background:#020617;">
+          <img src="logo-praktis.png" alt="Praktis" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+        -->
+      </div>
+      <div class="pre-text">
+        <div class="pre-title">Praktis</div>
+        <div class="pre-sub">Menyiapkan portal spreadsheet…</div>
+      </div>
+      <div class="spinner"></div>
+    </div>
+  </div>
+
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
   <div class="blob blob-3"></div>
@@ -347,7 +367,7 @@
         </div>
       </div>
       <div class="top-info">
-        Total link: <strong>34</strong><br/>
+        Total link: <strong id="totalLinks">34</strong><br/>
         Akses tetap mengikuti izin Google / Metabase
       </div>
     </div>
@@ -368,9 +388,15 @@
 
     <section class="content">
       <header class="content-header">
-        <span>Daftar link (urut sesuai input kamu)</span>
-        <span style="opacity:.8;">Kamu boleh edit judul/deskripsi langsung di file HTML</span>
-      </header>
+  <span id="resultInfo">Daftar link (34)</span>
+
+  <div class="search-wrap">
+    <input id="searchInput" class="search-input" type="search"
+      placeholder="Cari: nama link, tipe, badge (contoh: metabase / spreadsheet)…" autocomplete="off" />
+    <button id="clearSearch" class="btn-clear" type="button">Reset</button>
+  </div>
+</header>
+
 
       <div class="grid">
 
@@ -1131,17 +1157,210 @@
   </div>
 
   <script>
-    document.querySelectorAll(".btn-copy").forEach(function(btn) {
-      btn.addEventListener("click", function() {
-        const link = btn.getAttribute("data-link");
-        if (!link) return;
-        navigator.clipboard.writeText(link).then(() => {
-          const original = btn.textContent;
-          btn.textContent = "✔";
-          setTimeout(() => { btn.textContent = "🔗"; }, 900);
-        });
+  // === PRELOADER ===
+  window.addEventListener("load", () => {
+    const pre = document.getElementById("preloader");
+    if (!pre) return;
+    // sedikit delay biar halus (opsional)
+    setTimeout(() => pre.classList.add("hide"), 250);
+  });
+
+  // === COPY BUTTON ===
+  document.querySelectorAll(".btn-copy").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      const link = btn.getAttribute("data-link");
+      if (!link) return;
+      navigator.clipboard.writeText(link).then(() => {
+        const original = btn.textContent;
+        btn.textContent = "✔";
+        setTimeout(() => { btn.textContent = original || "🔗"; }, 900);
       });
     });
-  </script>
+  });
+
+  // === SEARCH / FILTER ===
+  const cards = Array.from(document.querySelectorAll(".card-item"));
+  const searchInput = document.getElementById("searchInput");
+  const clearBtn = document.getElementById("clearSearch");
+  const resultInfo = document.getElementById("resultInfo");
+    const totalLinks = document.getElementById("totalLinks");
+if (totalLinks) totalLinks.textContent = String(cards.length);
+
+
+  function getCardText(card){
+    const name = card.querySelector(".name")?.textContent || "";
+    const desc = card.querySelector(".desc")?.textContent || "";
+    const badge = card.querySelector(".badge")?.textContent || "";
+    const meta = card.querySelector(".meta")?.textContent || "";
+    const url = card.querySelector(".btn-main")?.getAttribute("href") || "";
+    return (name + " " + desc + " " + badge + " " + meta + " " + url).toLowerCase();
+  }
+
+  const cardIndex = cards.map(c => ({ el: c, text: getCardText(c) }));
+
+  function applyFilter(q){
+    const query = (q || "").trim().toLowerCase();
+    let shown = 0;
+
+    cardIndex.forEach(item => {
+      const match = !query || item.text.includes(query);
+      item.el.style.display = match ? "" : "none";
+      if (match) shown++;
+    });
+
+    const total = cards.length;
+    if (resultInfo) {
+      resultInfo.textContent = query
+        ? `Hasil: ${shown} dari ${total} link`
+        : `Daftar link (${total})`;
+    }
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => applyFilter(e.target.value));
+    // shortcut: tekan ESC untuk clear
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        searchInput.value = "";
+        applyFilter("");
+        searchInput.blur();
+      }
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      if (searchInput) searchInput.value = "";
+      applyFilter("");
+      if (searchInput) searchInput.focus();
+    });
+  }
+
+  // init info
+  applyFilter("");
+</script>
+
+
+  <style>
+  /* === SEARCH BAR === */
+  .search-wrap{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    width:min(520px, 100%);
+    margin-left:auto;
+  }
+  .search-input{
+    flex:1;
+    height:36px;
+    padding:0 12px;
+    border-radius:999px;
+    border:1px solid rgba(148,163,184,0.55);
+    background:rgba(2,6,23,0.35);
+    color:var(--text-main);
+    outline:none;
+    font-size:0.78rem;
+  }
+  .search-input::placeholder{ color: rgba(156,163,175,0.75); }
+  .search-input:focus{
+    border-color: rgba(56,189,248,0.9);
+    box-shadow: 0 0 0 3px rgba(56,189,248,0.18);
+  }
+  .btn-clear{
+    height:36px;
+    padding:0 12px;
+    border-radius:999px;
+    border:1px solid rgba(148,163,184,0.6);
+    background:rgba(15,23,42,0.96);
+    color:var(--text-main);
+    font-size:0.78rem;
+    cursor:pointer;
+    transition:transform .12s ease, border-color .12s ease;
+  }
+  .btn-clear:hover{ transform: translateY(-1px); border-color: var(--accent); }
+
+  /* Responsive: search turun ke baris baru */
+  @media (max-width:720px){
+    .content-header{
+      flex-direction:column;
+      align-items:stretch;
+      gap:10px;
+    }
+    .search-wrap{ margin-left:0; width:100%; }
+  }
+
+  /* === LOADING SCREEN (PRELOADER) === */
+  .preloader{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: radial-gradient(circle at top left, #1d4ed8, #020617 45%, #0b1120 100%);
+    transition: opacity .35s ease, visibility .35s ease;
+  }
+  .preloader.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .pre-card{
+    width:min(420px, 92vw);
+    border-radius:22px;
+    border:1px solid rgba(148,163,184,0.35);
+    background:rgba(15,23,42,0.92);
+    box-shadow:0 24px 60px rgba(15,23,42,0.95);
+    padding:18px 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .pre-logo{
+    width:48px;
+    height:48px;
+    border-radius:18px;
+    background: conic-gradient(from 160deg,#f97316,#1d4ed8,#38bdf8,#f97316);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 12px 28px rgba(15,23,42,0.9);
+    flex:0 0 auto;
+  }
+  .pre-logo-inner{
+    width:36px;
+    height:36px;
+    border-radius:14px;
+    background:#020617;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    letter-spacing:.06em;
+    color:var(--primary);
+    font-size:0.85rem;
+  }
+  .pre-text{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    min-width:0;
+  }
+  .pre-title{ font-weight:700; font-size:0.95rem; }
+  .pre-sub{ color:var(--text-muted); font-size:0.78rem; }
+
+  .spinner{
+    margin-left:auto;
+    width:20px;
+    height:20px;
+    border-radius:999px;
+    border:2px solid rgba(148,163,184,0.35);
+    border-top-color: rgba(56,189,248,0.95);
+    animation: spin .9s linear infinite;
+    flex:0 0 auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
 </body>
 </html>
