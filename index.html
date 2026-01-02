@@ -183,22 +183,7 @@ body{
 .card-desc{
   font-size:.78rem;
   color:var(--muted);
-  margin-top:4px;
-}
-
-/* === STATUS (FIX TIDAK NIMPA JUDUL) === */
-.status{
   margin-top:6px;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-size:.7rem;
-  padding:4px 10px;
-  border-radius:999px;
-  border:1px solid rgba(249,115,22,.5);
-  background:rgba(249,115,22,.15);
-  color:#fbbf24;
-  max-width:100%;
 }
 
 /* ===== ACTION ===== */
@@ -207,6 +192,8 @@ body{
   display:flex;
   gap:8px;
 }
+
+/* tombol buka jadi <a> */
 .open{
   flex:1;
   padding:8px;
@@ -215,7 +202,13 @@ body{
   background:linear-gradient(135deg,#facc15,#f97316);
   font-weight:600;
   cursor:pointer;
+  text-decoration:none;
+  color:#111827;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
+
 .copy{
   width:40px;
   border-radius:999px;
@@ -259,38 +252,37 @@ body{
     <!-- TOOLS -->
     <div class="content-header">
       <div class="header-row">
-        <input class="search" placeholder="Cari nama / tipe / kategori">
-        <button class="reset">Reset</button>
+        <input class="search" placeholder="Cari nama / tipe / kategori" id="search">
+        <button class="reset" id="reset">Reset</button>
       </div>
-      <div class="chips">
-        <div class="chip active">Semua</div>
-        <div class="chip">Umum</div>
-        <div class="chip">Finishgood</div>
-        <div class="chip">Material</div>
+      <div class="chips" id="chips">
+        <div class="chip active" data-cat="Semua">Semua</div>
+        <div class="chip" data-cat="Umum">Umum</div>
+        <div class="chip" data-cat="Finishgood">Finishgood</div>
+        <div class="chip" data-cat="Material">Material</div>
       </div>
     </div>
 
     <!-- LIST -->
     <div class="content-body">
 
-      <div class="category">
+      <div class="category" data-cat="Material">
         <h3>Material <span>1 link</span></h3>
 
-        <div class="card">
+        <div class="card" data-cat="Material" data-text="dashboard material monitoring inbound outbound material gudang">
           <div class="card-header">
-            <div class="card-title">Dashboard Material (Maintenance)</div>
+            <div class="card-title">Dashboard Material</div>
           </div>
-
-          <!-- STATUS FIX -->
-          <div class="status">⚠️ Sedang maintenance • Hubungi PIC</div>
 
           <div class="card-desc">
             Monitoring inbound & outbound material gudang.
           </div>
 
           <div class="actions">
-            <button class="open" disabled>Buka</button>
-            <button class="copy">🔗</button>
+            <!-- GANTI LINK DI SINI -->
+            <a class="open" href="https://contoh-link-kamu.com" target="_blank" rel="noopener noreferrer">Buka</a>
+
+            <button class="copy" data-copy="https://contoh-link-kamu.com" title="Copy link">🔗</button>
           </div>
         </div>
       </div>
@@ -303,6 +295,62 @@ body{
   </div>
 
 </div>
+
+<script>
+/* COPY */
+document.querySelectorAll(".copy").forEach(btn=>{
+  btn.addEventListener("click", async ()=>{
+    const link = btn.getAttribute("data-copy");
+    if(!link) return;
+    try{
+      await navigator.clipboard.writeText(link);
+      const old = btn.textContent;
+      btn.textContent = "✔";
+      setTimeout(()=>btn.textContent = old, 900);
+    }catch(e){
+      alert("Gagal copy. Copy manual: " + link);
+    }
+  });
+});
+
+/* SIMPLE SEARCH + CHIP (opsional, minimal) */
+let activeCat = "Semua";
+const searchEl = document.getElementById("search");
+const resetEl = document.getElementById("reset");
+const chipsEl = document.getElementById("chips");
+
+function applyFilter(){
+  const q = (searchEl.value || "").toLowerCase().trim();
+  document.querySelectorAll(".card").forEach(card=>{
+    const cat = card.getAttribute("data-cat") || "";
+    const text = (card.getAttribute("data-text") || "").toLowerCase();
+    const okCat = (activeCat==="Semua") || (cat===activeCat);
+    const okSearch = !q || text.includes(q);
+    card.style.display = (okCat && okSearch) ? "" : "none";
+  });
+}
+
+chipsEl.addEventListener("click",(e)=>{
+  const chip = e.target.closest(".chip");
+  if(!chip) return;
+  chipsEl.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
+  chip.classList.add("active");
+  activeCat = chip.getAttribute("data-cat") || "Semua";
+  applyFilter();
+});
+
+searchEl.addEventListener("input", applyFilter);
+
+resetEl.addEventListener("click", ()=>{
+  searchEl.value = "";
+  activeCat = "Semua";
+  chipsEl.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
+  chipsEl.querySelector('.chip[data-cat="Semua"]').classList.add("active");
+  applyFilter();
+});
+
+applyFilter();
+</script>
 
 </body>
 </html>
