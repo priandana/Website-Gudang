@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark" data-accent="orange">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Pergudangan Hub — PRO · NEO</title>
+  <meta name="description" content="Portal PRO NEO: bersih, modern, fokus konten. Aksen oranye/biru dapat dipilih." />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">⌂</div>
+      <div class="txt">
+        <h1>Pergudangan Hub <span class="badge">PRO · NEO</span></h1>
+        <p>Portal spreadsheet gudang yang rapi, cepat, dan enak dipakai.</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <select id="accentSelect" title="Aksen">
+        <option value="orange" selected>Orange</option>
+        <option value="blue">Blue</option>
+      </select>
+      <button id="themeToggle" class="btn icon" title="Gelap/Terang">🌓</button>
+      <a class="btn ghost" href="data/spreadsheets.json" target="_blank" rel="noopener">Data JSON</a>
+    </div>
+  </header>
+
+  <section class="searchbar">
+    <div class="search-wrap">
+      <span class="search-icn">⌕</span>
+      <input id="searchInput" type="search" placeholder="Cari judul, kategori, owner, tag, atau URL…  (tekan / untuk fokus)"/>
+    </div>
+    <div class="quick">
+      <div id="categoryChips" class="chips" aria-label="Kategori"></div>
+      <div id="tagChips" class="chips" aria-label="Tag"></div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><span id="totalCount">0</span><small>Total</small></div>
+    <div class="stat"><span id="categoryCount">0</span><small>Kategori</small></div>
+    <div class="stat"><span id="ownerCount">0</span><small>Owner</small></div>
+    <div class="stat"><span id="tagCount">0</span><small>Tag</small></div>
+  </section>
+
+  <main class="layout">
+    <aside class="side">
+      <h3>Filter</h3>
+      <label class="lb">Owner
+        <select id="ownerFilter"><option value="">Semua</option></select>
+      </label>
+      <label class="lb">Sort
+        <select id="sortSelect">
+          <option value="updated_desc">Terbaru diperbarui</option>
+          <option value="title_asc">Judul (A–Z)</option>
+          <option value="title_desc">Judul (Z–A)</option>
+        </select>
+      </label>
+      <label class="lb toggle"><input type="checkbox" id="embedToggle" checked><span>Preview di modal</span></label>
+      <label class="lb toggle"><input type="checkbox" id="compactToggle"><span>Mode ringkas</span></label>
+      <div class="divider"></div>
+      <h3>Data</h3>
+      <input id="filePicker" type="file" accept=".json,.csv"/>
+      <div class="row">
+        <button id="importBtn" class="btn small">Import</button>
+        <button id="exportJSONBtn" class="btn small ghost">Export JSON</button>
+        <button id="exportCSVBtn" class="btn small ghost">Export CSV</button>
+      </div>
+      <small class="muted">CSV: judul,link,kategori,owner,tags,deskripsi,updated_at</small>
+      <div class="divider"></div>
+      <h3>Tampilan</h3>
+      <div id="views" class="views"></div>
+      <div class="row">
+        <button id="saveViewBtn" class="btn small">Simpan</button>
+        <button id="resetViewBtn" class="btn small ghost">Reset</button>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="toolbar">
+        <div class="left">
+          <button id="addBtn" class="btn primary">+ Tambah (lokal)</button>
+          <span id="selCount" class="muted">0 dipilih</span>
+        </div>
+        <div class="right">
+          <button id="bulkOpenBtn" class="btn ghost">Buka terpilih</button>
+          <button id="bulkCopyBtn" class="btn ghost">Salin link terpilih</button>
+          <button id="clearFiltersBtn" class="btn ghost">Bersihkan filter</button>
+        </div>
+      </div>
+
+      <section id="cards" class="cards" aria-live="polite"></section>
+      <div id="pager" class="pager"></div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-label="Pratinjau Spreadsheet">
+    <div class="modal-content">
+      <button id="modalClose" class="btn icon" aria-label="Tutup">✕</button>
+      <iframe id="previewFrame" title="Pratinjau Spreadsheet" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Pergudangan Hub PRO · NEO</p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
