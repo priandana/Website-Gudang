@@ -157,25 +157,33 @@
       color:var(--text-muted);
     }
 
-    .content {
-      margin-top:8px;
-      border-radius:18px;
-      border:1px solid rgba(148,163,184,0.4);
-      background:rgba(15,23,42,0.96);
-      padding:10px 10px 8px;
-      flex:1;
-      overflow:auto;
-    }
+    .content{
+  margin-top:8px;
+  border-radius:18px;
+  border:1px solid rgba(148,163,184,0.4);
+  background:rgba(15,23,42,0.96);
+  flex:1;
+  overflow:auto;
+  overflow-x:hidden;        /* IMPORTANT: cegah scroll samping */
+  padding:0;                /* padding dipindah ke body */
+}
 
-    .content-header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      font-size:0.78rem;
-      color:var(--text-muted);
-      margin-bottom:8px;
-    }
+.content-header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding:10px;
+  border-bottom:1px solid rgba(148,163,184,0.25);
+  background:rgba(15,23,42,0.98);
+  backdrop-filter: blur(10px);
+  border-top-left-radius:18px;
+  border-top-right-radius:18px;
+  overflow:hidden;          /* biar rapih & gak “nyembul” */
+}
+
+.content-body{
+  padding:10px;
+}
 
     .grid {
       display:grid;
