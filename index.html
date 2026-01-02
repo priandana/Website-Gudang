@@ -398,9 +398,29 @@
 </header>
 
 
-      <div class="grid">
+      <!-- KATEGORI: FINISHGOOD -->
+<section class="category-block" id="catFinishgood">
+  <div class="category-head">
+    <div class="category-title"><span class="cat-dot"></span> Finishgood</div>
+    <div class="category-count" id="countFinishgood">0 link</div>
+  </div>
+  <div class="grid" id="gridFinishgood"></div>
+  <div class="empty-note" id="emptyFinishgood">Tidak ada link yang cocok di kategori Finishgood.</div>
+</section>
 
-      <article class="card-item">
+<!-- KATEGORI: MATERIAL -->
+<section class="category-block" id="catMaterial">
+  <div class="category-head">
+    <div class="category-title"><span class="cat-dot"></span> Material</div>
+    <div class="category-count" id="countMaterial">0 link</div>
+  </div>
+  <div class="grid" id="gridMaterial"></div>
+  <div class="empty-note" id="emptyMaterial">Tidak ada link yang cocok di kategori Material.</div>
+</section>
+
+<!-- Tempat “penampung” card lama (akan dipindah JS) -->
+<div id="allCards" style="display:none;">
+  <article class="card-item" data-category="Finishgood">
         <div class="badge">Google Sheets</div>
         <div class="name-row">
           <div class="icon">📊</div>
@@ -422,7 +442,7 @@
       </article>
     
 
-      <article class="card-item">
+      <article class="card-item" data-category="Material">
         <div class="badge">Metabase</div>
         <div class="name-row">
           <div class="icon">📈</div>
@@ -442,712 +462,7 @@
           </button>
         </div>
       </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 03</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>3</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1rBkR0g5gKbZNbeqy4lzwdbjuIPxyms9xxfWyQxfXGzc/edit#gid=1341514396" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1rBkR0g5gKbZNbeqy4lzwdbjuIPxyms9xxfWyQxfXGzc/edit#gid=1341514396" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 04</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>4</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit#gid=1939970495" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit#gid=1939970495" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 05</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>5</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1qk-VmBzATNWFTtZnQCPG1aBhpTo2xaSwvqMSLrDTyAg/edit#gid=0" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1qk-VmBzATNWFTtZnQCPG1aBhpTo2xaSwvqMSLrDTyAg/edit#gid=0" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Metabase</div>
-        <div class="name-row">
-          <div class="icon">📈</div>
-          <div class="name">Metabase Dashboard 6</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Metabase</strong></span>
-          <span>No: <strong>6</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://metabase.praktis.co/public/question/4414948a-a05a-43de-bd87-23acb965956d" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://metabase.praktis.co/public/question/4414948a-a05a-43de-bd87-23acb965956d" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 07</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>7</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Yv7bWs3DeMS2Yk0qvYkH_6BKcOOgP4cQyxvonpO1kvA/edit?gid=1577910271#gid=1577910271" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Yv7bWs3DeMS2Yk0qvYkH_6BKcOOgP4cQyxvonpO1kvA/edit?gid=1577910271#gid=1577910271" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 08</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>8</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Xh-Db9g-hgV2-kqr8EBwu2bwM5BQ8E17JtfxFs8Cvww/edit#gid=0" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Xh-Db9g-hgV2-kqr8EBwu2bwM5BQ8E17JtfxFs8Cvww/edit#gid=0" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 09</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>9</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1hirnpw5V4dLp8Lv_Un9H5il0pGaekBZFBEVMCDHCgB4/edit#gid=1039581923" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1hirnpw5V4dLp8Lv_Un9H5il0pGaekBZFBEVMCDHCgB4/edit#gid=1039581923" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 10</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>10</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1NymcYJu9AScgD_3qbJLUEnNv83LJaPWNuDA3uGqJMwA/edit" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1NymcYJu9AScgD_3qbJLUEnNv83LJaPWNuDA3uGqJMwA/edit" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 11</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>11</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1nO90xeFIcD5eeevyxuJaAUny8MHfiVybd4sqaTxLgJg/edit" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1nO90xeFIcD5eeevyxuJaAUny8MHfiVybd4sqaTxLgJg/edit" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 12</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>12</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1_aWm7HRyTTjTijCQSMtQ-LC2swETr4w3WplHltDGdzk/edit" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1_aWm7HRyTTjTijCQSMtQ-LC2swETr4w3WplHltDGdzk/edit" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 13</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>13</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/17kbxJcTCHYlrk2kEaR95SJHuSmM2KA5c_oQWwv45skA/edit" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/17kbxJcTCHYlrk2kEaR95SJHuSmM2KA5c_oQWwv45skA/edit" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 14</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>14</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1tennaiHtDCaTVsTAAh_4mIBAgPOm9ZZCdT-MjeQHYeY/edit" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1tennaiHtDCaTVsTAAh_4mIBAgPOm9ZZCdT-MjeQHYeY/edit" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 15</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>15</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1_tDskis2iPNyTFRVS_ftuIJMZZLM0xxWY9paubworRA/edit#gid=577738889" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1_tDskis2iPNyTFRVS_ftuIJMZZLM0xxWY9paubworRA/edit#gid=577738889" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 16</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>16</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/12vi9NA8M5QPA954wHiI-27qPnura-m_fgyCTvGNsS4A/edit?gid=275005263#gid=275005263" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/12vi9NA8M5QPA954wHiI-27qPnura-m_fgyCTvGNsS4A/edit?gid=275005263#gid=275005263" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 17</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>17</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1O-61ACBsVptuJptN0U-ERlkbHmZRRCeI6Xlolydev9M/edit#gid=173436334" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1O-61ACBsVptuJptN0U-ERlkbHmZRRCeI6Xlolydev9M/edit#gid=173436334" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 18</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>18</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/u/0/d/1zQZ1IRc1J5w1-GpEc7m1HyIMB69PO_ag6ul04gV0ud0/edit" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/u/0/d/1zQZ1IRc1J5w1-GpEc7m1HyIMB69PO_ag6ul04gV0ud0/edit" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 19</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>19</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1ynuaf2bH2_SXwWc3JZPzUdlojreTrAGl6bqB88G4THM/edit#gid=593033998" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1ynuaf2bH2_SXwWc3JZPzUdlojreTrAGl6bqB88G4THM/edit#gid=593033998" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 20</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>20</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1gN5IJoVEq2IFxKp-kXb-VSYL6oXTOc0AbxDrshfaqog/edit#gid=1760790889" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1gN5IJoVEq2IFxKp-kXb-VSYL6oXTOc0AbxDrshfaqog/edit#gid=1760790889" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 21</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>21</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1O-uCAazHNcc3C6JLtNJc_26H-FgcHHsManV7ypjIzM/edit?gid=553832455#gid=553832455" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1O-uCAazHNcc3C6JLtNJc_26H-FgcHHsManV7ypjIzM/edit?gid=553832455#gid=553832455" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 22</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>22</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Tl5HebKNznjr-sBQwuHzsBKq92lxgiPFPRFlpEmu6Ys/edit?gid=1449397475#gid=1449397475" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Tl5HebKNznjr-sBQwuHzsBKq92lxgiPFPRFlpEmu6Ys/edit?gid=1449397475#gid=1449397475" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 23</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>23</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1ElB6_mj-0JtQ_557QnHeNQuIGnponrP07QsLCjF7Xy0/edit?gid=639685974#gid=639685974" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1ElB6_mj-0JtQ_557QnHeNQuIGnponrP07QsLCjF7Xy0/edit?gid=639685974#gid=639685974" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 24</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>24</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1DCrgXgA7PgQPmrokzF6sB_KlEg4LEEVIggv_y_KGNmo/edit?gid=1885269228#gid=1885269228" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1DCrgXgA7PgQPmrokzF6sB_KlEg4LEEVIggv_y_KGNmo/edit?gid=1885269228#gid=1885269228" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 25</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>25</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1-jio_xo5_YuHZ1r1evVfDKRHrW0COaZoXc-FDHf1SmM/edit?gid=851507582#gid=851507582" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1-jio_xo5_YuHZ1r1evVfDKRHrW0COaZoXc-FDHf1SmM/edit?gid=851507582#gid=851507582" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 26</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>26</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1d3TiOoKVk4WAn3S0bjid72zSy2VDtGzE/edit?gid=1220113485#gid=1220113485" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1d3TiOoKVk4WAn3S0bjid72zSy2VDtGzE/edit?gid=1220113485#gid=1220113485" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 27</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>27</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Yv7bWs3DeMS2Yk0qvYkH_6BKcOOgP4cQyxvonpO1kvA/edit?gid=1412813058#gid=1412813058" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Yv7bWs3DeMS2Yk0qvYkH_6BKcOOgP4cQyxvonpO1kvA/edit?gid=1412813058#gid=1412813058" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 28</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>28</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1hirnpw5V4dLp8Lv_Un9H5il0pGaekBZFBEVMCDHCgB4/edit?gid=1124224996#gid=1124224996" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1hirnpw5V4dLp8Lv_Un9H5il0pGaekBZFBEVMCDHCgB4/edit?gid=1124224996#gid=1124224996" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 29</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>29</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/10BhyVI1M-TKpJtK0ibhn5xokIU6sAVROcRQ3XrtI_Ok/edit?gid=1995252832#gid=1995252832" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/10BhyVI1M-TKpJtK0ibhn5xokIU6sAVROcRQ3XrtI_Ok/edit?gid=1995252832#gid=1995252832" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 30</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>30</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1nO90xeFIcD5eeevyxuJaAUny8MHfiVybd4sqaTxLgJg/edit?gid=1065148661#gid=1065148661" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1nO90xeFIcD5eeevyxuJaAUny8MHfiVybd4sqaTxLgJg/edit?gid=1065148661#gid=1065148661" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 31</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>31</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit?gid=207622867#gid=207622867" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1fds31LOwMaiGL4uZIE5Wy6q81lDMMMSseInNnKToA4k/edit?gid=207622867#gid=207622867" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 32</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>32</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1WinuOaqeMDeKDoRGNf5yFiIHPAb9RrUewFbUAY_V1Os/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1WinuOaqeMDeKDoRGNf5yFiIHPAb9RrUewFbUAY_V1Os/edit?gid=0#gid=0" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 33</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>33</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Cp9xRy2wq-Yn_Q_i2QC386KntGMKjwy-dwnEk0UsIeU/edit?gid=1908646891#gid=1908646891" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Cp9xRy2wq-Yn_Q_i2QC386KntGMKjwy-dwnEk0UsIeU/edit?gid=1908646891#gid=1908646891" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-
-      <article class="card-item">
-        <div class="badge">Google Sheets</div>
-        <div class="name-row">
-          <div class="icon">📊</div>
-          <div class="name">Spreadsheet 34</div>
-        </div>
-        <p class="desc">Edit judul & deskripsi di HTML jika mau disesuaikan nama aslinya.</p>
-        <div class="meta">
-          <span>Tipe: <strong>Google Sheets</strong></span>
-          <span>No: <strong>34</strong></span>
-        </div>
-        <div class="actions">
-          <a class="btn-main" href="https://docs.google.com/spreadsheets/d/1Q_mPr9wEy6iDu3ljc0xX31RKv3ot8uULdjzSGLbnWt0/edit?gid=970355464#gid=970355464" target="_blank" rel="noopener noreferrer">
-            Buka
-          </a>
-          <button class="btn-copy" data-link="https://docs.google.com/spreadsheets/d/1Q_mPr9wEy6iDu3ljc0xX31RKv3ot8uULdjzSGLbnWt0/edit?gid=970355464#gid=970355464" title="Copy link">
-            🔗
-          </button>
-        </div>
-      </article>
-    
-      </div>
+</div>
     </section>
 
     <footer class="footer">
@@ -1157,12 +472,10 @@
   </div>
 
   <script>
-  // === PRELOADER ===
+  // === PRELOADER (kalau kamu pakai) ===
   window.addEventListener("load", () => {
     const pre = document.getElementById("preloader");
-    if (!pre) return;
-    // sedikit delay biar halus (opsional)
-    setTimeout(() => pre.classList.add("hide"), 250);
+    if (pre) setTimeout(() => pre.classList.add("hide"), 250);
   });
 
   // === COPY BUTTON ===
@@ -1178,14 +491,37 @@
     });
   });
 
-  // === SEARCH / FILTER ===
-  const cards = Array.from(document.querySelectorAll(".card-item"));
+  // === KATEGORISASI ===
+  const allCardsWrap = document.getElementById("allCards");
+  const cards = Array.from(allCardsWrap?.querySelectorAll(".card-item") || []);
+
+  const gridFinishgood = document.getElementById("gridFinishgood");
+  const gridMaterial = document.getElementById("gridMaterial");
+
+  const countFinishgood = document.getElementById("countFinishgood");
+  const countMaterial = document.getElementById("countMaterial");
+
+  const emptyFinishgood = document.getElementById("emptyFinishgood");
+  const emptyMaterial = document.getElementById("emptyMaterial");
+
+  function normalizeCategory(val){
+    const v = (val || "").toLowerCase().trim();
+    if (v === "material") return "Material";
+    return "Finishgood"; // default
+  }
+
+  // pindahkan card ke grid yang sesuai
+  cards.forEach(card => {
+    const cat = normalizeCategory(card.getAttribute("data-category"));
+    card.setAttribute("data-category", cat);
+    if (cat === "Material") gridMaterial.appendChild(card);
+    else gridFinishgood.appendChild(card);
+  });
+
+  // === SEARCH / FILTER (lintas kategori) ===
   const searchInput = document.getElementById("searchInput");
   const clearBtn = document.getElementById("clearSearch");
   const resultInfo = document.getElementById("resultInfo");
-    const totalLinks = document.getElementById("totalLinks");
-if (totalLinks) totalLinks.textContent = String(cards.length);
-
 
   function getCardText(card){
     const name = card.querySelector(".name")?.textContent || "";
@@ -1193,10 +529,25 @@ if (totalLinks) totalLinks.textContent = String(cards.length);
     const badge = card.querySelector(".badge")?.textContent || "";
     const meta = card.querySelector(".meta")?.textContent || "";
     const url = card.querySelector(".btn-main")?.getAttribute("href") || "";
-    return (name + " " + desc + " " + badge + " " + meta + " " + url).toLowerCase();
+    const cat = card.getAttribute("data-category") || "";
+    return (name + " " + desc + " " + badge + " " + meta + " " + url + " " + cat).toLowerCase();
   }
 
   const cardIndex = cards.map(c => ({ el: c, text: getCardText(c) }));
+
+  function updateCounts(){
+    const visFinish = gridFinishgood.querySelectorAll('.card-item:not([style*="display: none"])').length;
+    const visMat = gridMaterial.querySelectorAll('.card-item:not([style*="display: none"])').length;
+
+    const totalFinish = gridFinishgood.querySelectorAll('.card-item').length;
+    const totalMat = gridMaterial.querySelectorAll('.card-item').length;
+
+    if (countFinishgood) countFinishgood.textContent = `${visFinish}/${totalFinish} link`;
+    if (countMaterial) countMaterial.textContent = `${visMat}/${totalMat} link`;
+
+    if (emptyFinishgood) emptyFinishgood.classList.toggle("show", visFinish === 0);
+    if (emptyMaterial) emptyMaterial.classList.toggle("show", visMat === 0);
+  }
 
   function applyFilter(q){
     const query = (q || "").trim().toLowerCase();
@@ -1214,11 +565,12 @@ if (totalLinks) totalLinks.textContent = String(cards.length);
         ? `Hasil: ${shown} dari ${total} link`
         : `Daftar link (${total})`;
     }
+
+    updateCounts();
   }
 
   if (searchInput) {
     searchInput.addEventListener("input", (e) => applyFilter(e.target.value));
-    // shortcut: tekan ESC untuk clear
     searchInput.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         searchInput.value = "";
@@ -1227,7 +579,6 @@ if (totalLinks) totalLinks.textContent = String(cards.length);
       }
     });
   }
-
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
       if (searchInput) searchInput.value = "";
@@ -1236,9 +587,10 @@ if (totalLinks) totalLinks.textContent = String(cards.length);
     });
   }
 
-  // init info
+  // init
   applyFilter("");
 </script>
+
 
 
   <style>
@@ -1361,6 +713,52 @@ if (totalLinks) totalLinks.textContent = String(cards.length);
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 </style>
+    <style>
+  .category-block{
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(148,163,184,0.35);
+  }
+  .category-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin: 4px 2px 10px;
+  }
+  .category-title{
+    font-size:0.92rem;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .cat-dot{
+    width:10px;height:10px;border-radius:999px;
+    background: linear-gradient(135deg,var(--primary),var(--accent));
+    box-shadow: 0 8px 20px rgba(56,189,248,0.18);
+  }
+  .category-count{
+    font-size:0.74rem;
+    color: var(--text-muted);
+    border:1px solid rgba(148,163,184,0.35);
+    background: rgba(15,23,42,0.7);
+    padding:4px 10px;
+    border-radius:999px;
+  }
+  .empty-note{
+    display:none;
+    margin-top:8px;
+    padding:10px;
+    border-radius:14px;
+    border:1px solid rgba(148,163,184,0.25);
+    color: var(--text-muted);
+    background: rgba(2,6,23,0.25);
+    font-size:0.78rem;
+  }
+  .empty-note.show{ display:block; }
+</style>
+
 
 </body>
 </html>
