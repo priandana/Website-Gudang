@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pusat Spreadsheet Pergudangan</title>
+  <meta name="description" content="Portal internal untuk melihat dan membuka spreadsheet pergudangan." />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFD54F' d='M4 7l8-5l8 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z'/%3E%3Cpath fill='%23212B36' d='M6 9h12v10H6z'/%3E%3Cpath fill='%23FFD54F' d='M8 11h3v2H8zm0 3h3v2H8zm5-3h3v2h-3zm0 3h3v2h-3z'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="branding">
+      <div class="logo" aria-hidden="true">🏭</div>
+      <div>
+        <h1>Pusat Spreadsheet Pergudangan</h1>
+        <p>Semua lembar kerja gudang, satu pintu.</p>
+      </div>
+    </div>
+    <div class="actions">
+      <input id="searchInput" type="search" placeholder="Cari: nama, kategori, atau owner…" aria-label="Cari spreadsheet" />
+      <button id="addBtn" class="btn ghost" title="Tambah link (hanya lokal di perangkat ini)">+ Tambah Sementara</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="summary">
+      <div class="stat">
+        <span id="totalCount">0</span>
+        <small>Total Spreadsheet</small>
+      </div>
+      <div class="stat">
+        <span id="categoryCount">0</span>
+        <small>Kategori</small>
+      </div>
+      <div class="stat">
+        <span id="ownerCount">0</span>
+        <small>Owner</small>
+      </div>
+    </section>
+
+    <section class="filters">
+      <label>
+        Kategori
+        <select id="categoryFilter">
+          <option value="">Semua</option>
+        </select>
+      </label>
+      <label>
+        Owner
+        <select id="ownerFilter">
+          <option value="">Semua</option>
+        </select>
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="embedToggle" checked />
+        <span>Lihat di modal (jika bisa)</span>
+      </label>
+    </section>
+
+    <section id="cards" class="cards" aria-live="polite"></section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Portal Pergudangan • Dibangun untuk dibuka di Vercel (static hosting).</p>
+    <a href="data/spreadsheets.json" target="_blank" rel="noopener">Lihat data/spreadsheets.json</a>
+  </footer>
+
+  <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-label="Pratinjau Spreadsheet">
+    <div class="modal-content" role="document">
+      <button id="modalClose" class="btn icon" aria-label="Tutup modal">✕</button>
+      <iframe id="previewFrame" title="Pratinjau Spreadsheet" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

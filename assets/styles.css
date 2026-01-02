@@ -1,0 +1,94 @@
+/* Warehouse theme - industrial grey + safety yellow */
+:root{
+  --bg: #0f141a;
+  --panel: #141b23;
+  --muted: #212b36;
+  --text: #e6edf3;
+  --subtext:#9fb0c0;
+  --accent:#FFD54F; /* safety yellow */
+  --accent-ink:#1a1a1a;
+  --ok:#6EE7B7;
+  --warn:#FBBF24;
+  --danger:#F87171;
+  --radius:16px;
+  --shadow: 0 10px 20px rgba(0,0,0,.25), 0 6px 6px rgba(0,0,0,.18);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, "Apple Color Emoji","Segoe UI Emoji";
+  background: radial-gradient(1200px 800px at 20% -10%, #1b2530, transparent) no-repeat, var(--bg);
+  color: var(--text);
+}
+.site-header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter: blur(6px);
+  background: color-mix(in oklab, var(--bg) 70%, transparent);
+  border-bottom:1px solid var(--muted);
+  padding: 16px 20px;
+  display:flex; gap:16px; align-items:center; justify-content:space-between;
+}
+.branding{display:flex; gap:12px; align-items:center}
+.logo{
+  width:44px; height:44px; display:grid; place-items:center;
+  background:var(--muted); border-radius:50%;
+  box-shadow: var(--shadow);
+}
+h1{margin:0; font-size: clamp(18px, 3.5vw, 22px)}
+.site-header p{margin:2px 0 0; color:var(--subtext); font-size:12px}
+.actions{display:flex; gap:10px; align-items:center}
+input[type="search"]{
+  width:min(520px, 60vw); padding:12px 14px; border-radius:12px;
+  border:1px solid var(--muted); background:#0b1016; color:var(--text);
+}
+.btn{border:1px solid var(--muted); background:var(--panel); color:var(--text);
+  padding:10px 14px; border-radius:12px; cursor:pointer}
+.btn.ghost{background:transparent}
+.btn.icon{padding:8px 10px}
+.btn.primary{background:var(--accent); color:var(--accent-ink); border-color:transparent; font-weight:600}
+
+main{max-width:1100px; margin: 24px auto; padding: 0 20px;}
+.summary{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px; margin-bottom:16px}
+.stat{background: linear-gradient(180deg, #17202a, #0f151c); border:1px solid var(--muted); border-radius:12px; padding:16px; text-align:center}
+.stat span{font-size:28px; font-weight:700}
+.stat small{display:block; color:var(--subtext); margin-top:6px}
+
+.filters{display:flex; gap:12px; align-items:end; flex-wrap:wrap; margin:14px 0 16px}
+label{display:flex; flex-direction:column; font-size:13px; color:var(--subtext)}
+select, .toggle input{
+  padding:10px 12px; border-radius:10px; border:1px solid var(--muted); background:#0b1016; color:var(--text);
+}
+.toggle{flex-direction:row; align-items:center; gap:8px}
+
+.cards{display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:14px}
+.card{
+  background: linear-gradient(180deg, #121922, #0d141c);
+  border:1px solid var(--muted);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow);
+  display:flex; flex-direction:column; gap:10px;
+}
+.card .meta{display:flex; align-items:center; gap:8px; color:var(--subtext); font-size:12px}
+.badge{display:inline-flex; align-items:center; gap:6px; border:1px dashed #374353; padding:3px 8px; border-radius:999px; font-size:11px; color:#b9c6d3}
+.title{font-weight:700; font-size:16px; margin:0}
+.desc{margin:0; color:#c2cfdb; font-size:13px; min-height:2.2em}
+.actions-row{display:flex; gap:8px; margin-top:auto}
+.copy{font-size:12px; opacity:.9}
+.link{word-break: break-all; font-size:12px; color:#8fb3ff}
+.card .icons{font-size:18px}
+.card:hover{transform: translateY(-2px); transition:.2s ease}
+
+.site-footer{
+  border-top:1px solid var(--muted); padding:20px; text-align:center; color:var(--subtext)
+}
+
+.modal{position:fixed; inset:0; background: rgba(0,0,0,.65); display:none; align-items:center; justify-content:center; padding:20px}
+.modal[aria-hidden="false"]{display:flex}
+.modal-content{position:relative; background:#0a0f14; width:min(1100px, 95vw); height:min(85vh, 780px); border-radius:16px; border:1px solid var(--muted); box-shadow: var(--shadow); overflow:hidden}
+.modal-content iframe{width:100%; height:100%; border:0; background:#0a0f14}
+.modal-content .btn{position:absolute; top:10px; right:10px; z-index:2}
+@media (max-width:640px){
+  .summary{grid-template-columns:1fr}
+}
